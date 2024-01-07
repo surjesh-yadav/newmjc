@@ -419,6 +419,7 @@ div.content {
 span.unknowUser {
   font-size: 80px;
   color: #58dea2;
+  position: relative;
 }
 
 i.fa.fa-user-circle-o {
@@ -2304,4 +2305,21 @@ span.inactive {
   background-color: #103537;
   font-weight: 500;
   color: white;
+}
+
+
+.user_logo {
+  width: 100px;
+  margin-left: 35px;
+}
+
+.edit_icon{
+  width: 28px;
+  background: white;
+  position: absolute;
+  top: 96px;
+  right: 14px;
+  border-radius: 13px;
+  padding: 3px;
+  cursor: pointer;
 }

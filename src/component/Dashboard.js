@@ -376,7 +376,7 @@ const Dashboard = () => {
     useContractRead(contract, "getThePlanCount", [wallet_address, 1000]);
 
 // Checking unlock plans
-
+   console.log(wallet_address)
     const { data: lockDetails50, isLoading: isLockLoading50 } =
     useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 50]);
     console.log(lockDetails50)
@@ -394,7 +394,7 @@ const Dashboard = () => {
 
     const { data: lockDetails1000, isLoading: isLockLoading1000 } =
     useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 1000]);
-    console.log(lockDetails100)
+    console.log(lockDetails1000)
 
 
 
@@ -776,7 +776,10 @@ const Dashboard = () => {
                 <div className="personal_user_left">
                   <div className="unknowuser_img">
                     <span className="unknowUser">
-                      <img className="user_logo" src="/logo.svg" />
+                      <img className="user_logo" src="/userlogo.png" />
+                      <img className="edit_icon" src="/pen.png" />
+
+                      
                     </span>
                   </div>
 
@@ -1417,7 +1420,7 @@ const Dashboard = () => {
               </div> */}
 
                 <div className="col-lg-6">
-                {lockDetails100 == true ? 
+                {lockDetails1000 == true ? 
                    
                   <Link to="/Preview1000">
                     <div
