@@ -356,9 +356,8 @@ const Dashboard = () => {
 
 
 
-  const { data: checkData, isLoading: isCheckLoading } =
+    const { data: checkData, isLoading: isCheckLoading } =
     useContractRead(contract, "getUnlockPlanDetails", [parent, 50]);
-  // console.log(parent,"parentttttt")
 
   const { data: getThePlansCount, isLoading: isPlanCountLoading } =
     useContractRead(contract, "getThePlanCount", [wallet_address, 50]);
@@ -375,6 +374,39 @@ const Dashboard = () => {
 
   const { data: getThePlansCount1000, isLoading: is1000PlanCountLoading } =
     useContractRead(contract, "getThePlanCount", [wallet_address, 1000]);
+
+// Checking unlock plans
+
+    const { data: lockDetails50, isLoading: isLockLoading50 } =
+    useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 50]);
+
+console.log(lockDetails50)
+    const { data: lockDetails100, isLoading: isLockLoading100 } =
+    useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 100]);
+    console.log(lockDetails100)
+
+    const { data: lockDetails200, isLoading: isLockLoading200 } =
+    useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 200]);
+    console.log(lockDetails200)
+
+    const { data: lockDetails500, isLoading: isLockLoading500 } =
+    useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 500]);
+    console.log(lockDetails500)
+
+    const { data: lockDetails1000, isLoading: isLockLoading1000 } =
+    useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 1000]);
+    console.log(lockDetails100)
+
+
+
+
+
+
+
+
+
+
+
 
   //     toast.success("Tokens Bought Successfully", {
   //       position: toast.POSITION.TOP_CENTER,
@@ -832,7 +864,7 @@ const Dashboard = () => {
                   >
                     <div className="login_to_show">
                       <p>BNB Balance</p>
-                      <h4 className="stacked_value">{parseFloat(bnbStakeValue).toFixed(4)} BNB</h4>
+                      <h4 className="stacked_value">{bnbStakeValue ? parseFloat(bnbStakeValue).toFixed(4) : "0.00"} BNB</h4>
                     </div>
                   </div>
                 </div>
@@ -1034,7 +1066,11 @@ const Dashboard = () => {
                       <img src={bluesedo} alt='blue_color' className='blue_color_img' />
                     </div> */}
                       <div className="card_menu">
-                        <h4>$50</h4>
+                      <div className="doller_circle">
+                      {lockDetails50 === true?  <span className="unlocked_circle"></span> : "" }
+                        <h4>$50</h4> 
+                       
+                      </div>
 
                         <h4>
                           {box50 ? ((50 - 50 * 0.15) / 2) * box50 : "0.00"} USDT
@@ -1074,7 +1110,11 @@ const Dashboard = () => {
                       <img src={purplesedo} alt='blue_color' className='blue_color_img' />
                     </div> */}
                       <div className="card_menu">
-                        <h4>$100</h4>
+                      <div className="doller_circle">
+                      {lockDetails100 === true?  <span className="unlocked_circle"></span> : "" }
+                        <h4>$100</h4> 
+                       
+                      </div>
                         <h4>
                           {box100 ? ((100 - 100 * 0.15) / 2) * box100 : "0.00"}{" "}
                           USDT
@@ -1114,7 +1154,11 @@ const Dashboard = () => {
                       <img src={pinksedo} alt='blue_color' className='blue_color_img' />
                     </div> */}
                       <div className="card_menu">
-                        <h4>$200</h4>
+                      <div className="doller_circle">
+                      {lockDetails200 === true?  <span className="unlocked_circle"></span> : "" }
+                        <h4>$200</h4> 
+                       
+                      </div>
                         <h4>
                           {box200 ? ((200 - 200 * 0.15) / 2) * box200 : "0.00"}{" "}
                           USDT
@@ -1154,7 +1198,11 @@ const Dashboard = () => {
                       <img src={goldsedo} alt='blue_color' className='blue_color_img gold_blue' />
                     </div> */}
                       <div className="card_menu">
-                        <h4>$500</h4>
+                      <div className="doller_circle">
+                      {lockDetails500 === true?  <span className="unlocked_circle"></span> : "" }
+                        <h4>$500</h4> 
+                       
+                      </div>
                         <h4>
                           {box500 ? ((500 - 500 * 0.15) / 2) * box500 : "0.00"}{" "}
                           USDT
@@ -1216,7 +1264,11 @@ const Dashboard = () => {
                       <img src={greensedo} alt='blue_color' className='blue_color_img ' />
                     </div> */}
                       <div className="card_menu">
-                        <h4>$1000</h4>
+                      <div className="doller_circle">
+                      {lockDetails1000 === true?  <span className="unlocked_circle"></span> : "" }
+                        <h4>$1000</h4> 
+                       
+                      </div>
                         <h4>
                           {box1000
                             ? ((1000 - 1000 * 0.15) / 2) * box1000

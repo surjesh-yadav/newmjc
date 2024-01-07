@@ -728,6 +728,8 @@ span.forsage_info {
   display: flex;
   flex-wrap: wrap;
   width: 50%;
+  gap: 10px;
+  justify-content: center;
 }
 
 .preview_card_sec {
@@ -2264,4 +2266,18 @@ span.inactive {
 
 .id_user.right_text{
   position: relative;
+}
+
+
+.unlocked_circle{
+  background: #16f31f;
+  height: 12px;
+  width: 12px;
+  border-radius: 30px;
+  margin-top: 7px;
+}
+
+.doller_circle{
+  display: flex;
+  gap: 7px;
 }
