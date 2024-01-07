@@ -256,7 +256,7 @@ const Registration = () => {
   };
 
 
-
+  var storedData = localStorage.getItem('userData');
   // buyTokens
   const { mutateAsync: buyTokens, isLoading: isBuyTokensLoading } =
     useContractWrite(contract, "buyTokens");
@@ -528,6 +528,32 @@ const Registration = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  
+
+
+
+  const { data: lockDetails50, isLoading: isLockLoading50 } =
+  useContractRead(contract, "getUnlockPlanDetails", [address, 50]);
+  console.log(lockDetails50)
+  const { data: lockDetails100, isLoading: isLockLoading100 } =
+  useContractRead(contract, "getUnlockPlanDetails", [address, 100]);
+  console.log(lockDetails100)
+
+  const { data: lockDetails200, isLoading: isLockLoading200 } =
+  useContractRead(contract, "getUnlockPlanDetails", [address, 200]);
+  console.log(lockDetails200)
+
+  const { data: lockDetails500, isLoading: isLockLoading500 } =
+  useContractRead(contract, "getUnlockPlanDetails", [address, 500]);
+  console.log(lockDetails500)
+
+  const { data: lockDetails1000, isLoading: isLockLoading1000 } =
+  useContractRead(contract, "getUnlockPlanDetails", [address, 1000]);
+  console.log(lockDetails1000)
+
+
+
+ 
   return (
     <div className="regi_main">
       {isModalOpen && (
@@ -751,11 +777,26 @@ const Registration = () => {
                                 Select Your Plan
                               </option>
                               {/* <option value="0.1">0.1</option> */}
-                              <option value="50">50</option>
-                              <option value="100">100</option>
-                              <option value="200">200</option>
-                              <option value="500">500</option>
-                              <option value="1000">1000</option>
+                              {lockDetails50 == true ? 
+                                <option disabled value="50">50</option> :
+                                <option value="50">50</option>
+                               }
+                               {lockDetails100 == true ? 
+                                <option disabled value="100">100</option> :
+                                <option value="100">100</option>
+                               }
+                               {lockDetails200 == true ? 
+                                <option disabled value="200">200</option> :
+                                <option value="200">200</option>
+                               }
+                               {lockDetails500 == true ? 
+                                <option disabled value="500">500</option> :
+                                <option value="500">500</option>
+                               }
+                               {lockDetails1000 == true ? 
+                                <option disabled value="1000">1000</option> :
+                                <option value="1000">1000</option>
+                               }
                             </select>
                           </div>
                           <p>You must have {result2} MJC Tokens</p>

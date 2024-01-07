@@ -728,8 +728,6 @@ span.forsage_info {
   display: flex;
   flex-wrap: wrap;
   width: 50%;
-  gap: 10px;
-  justify-content: center;
 }
 
 .preview_card_sec {
@@ -2242,6 +2240,10 @@ input::-webkit-inner-spin-button {
     display:  none !important;
   }
 
+  .forsage_step {
+    gap: 10px;
+    justify-content: center;
+  }
  
 }
 
@@ -2280,4 +2282,26 @@ span.inactive {
 .doller_circle{
   display: flex;
   gap: 7px;
+}
+
+
+
+.forsage_card.locked_box {
+  opacity: 0.6;
+  cursor: auto;
+}
+
+.forsage_card.locked_box button{
+  cursor: not-allowed;
+}
+
+.buy_token_card option {
+  color: #103537;
+  font-weight: 500;
+}
+
+.buy_token_card option:hover {
+  background-color: #103537;
+  font-weight: 500;
+  color: white;
 }

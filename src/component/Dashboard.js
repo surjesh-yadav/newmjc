@@ -379,8 +379,7 @@ const Dashboard = () => {
 
     const { data: lockDetails50, isLoading: isLockLoading50 } =
     useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 50]);
-
-console.log(lockDetails50)
+    console.log(lockDetails50)
     const { data: lockDetails100, isLoading: isLockLoading100 } =
     useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 100]);
     console.log(lockDetails100)
@@ -1054,9 +1053,10 @@ console.log(lockDetails50)
             <div className="forsage_card_main">
               <div className="row">
                 <div className="col-lg-6">
-                  <Link to="/Preview50">
-                    <div
-                      className="forsage_card"
+                 
+                  {lockDetails50 == true ? 
+                    <Link aria-disabled="true" to="/Preview50">
+                    <div className="forsage_card"
                     // style={{
                     //   backgroundImage: `url(${bluesedo})`,
                     //   backgroundSize: "cover",
@@ -1069,8 +1069,7 @@ console.log(lockDetails50)
                       <div className="doller_circle">
                       {lockDetails50 === true?  <span className="unlocked_circle"></span> : "" }
                         <h4>$50</h4> 
-                       
-                      </div>
+                        </div>
 
                         <h4>
                           {box50 ? ((50 - 50 * 0.15) / 2) * box50 : "0.00"} USDT
@@ -1079,7 +1078,6 @@ console.log(lockDetails50)
 
                       <div className="preview_card_sec">
                         <div className="forsage_step">{blueElements50}</div>
-
                         <div className="prievi_btn">
                           <button>
                             Preview{" "}
@@ -1093,14 +1091,56 @@ console.log(lockDetails50)
                           </button>
                         </div>
                       </div>
+                    </div></Link> : 
+       
+                    <Link aria-disabled="true">
+                    <div className="forsage_card locked_box"
+                    // style={{
+                    //   backgroundImage: `url(${bluesedo})`,
+                    //   backgroundSize: "cover",
+                    // }}
+                    >
+                      {/* <div className='blue_color'>
+                      <img src={bluesedo} alt='blue_color' className='blue_color_img' />
+                    </div> */}
+                      <div className="card_menu">
+                      <div className="doller_circle">
+                      {lockDetails50 === true?  <span className="unlocked_circle"></span> : "" }
+                        <h4>$50</h4> 
+                        </div>
+
+                        <h4>
+                          {box50 ? ((50 - 50 * 0.15) / 2) * box50 : "0.00"} USDT
+                        </h4>
+                      </div>
+
+                      <div className="preview_card_sec">
+                        <div className="forsage_step">{blueElements50}</div>
+
+                        <div className="prievi_btn">
+                          <button disabled>
+                            Locked{" "}
+                            <span>
+                              <img
+                                src={img28topicon}
+                                alt="img28topicon"
+                                className="img28topicon1"
+                              />
+                            </span>
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                  </Link>
+                    </Link>
+                   }
+                   
+                  
                 </div>
 
-                <div className="col-lg-6">
-                  <Link to="/Preview100">
-                    <div
-                      className="forsage_card"
+                <div className="col-lg-6"> 
+                  {lockDetails100 === true ? 
+                    <Link to="/Preview100">
+                    <div className="forsage_card"
                     // style={{
                     //   backgroundImage: `url(${purplesedo})`,
                     //   backgroundSize: "cover",
@@ -1138,13 +1178,55 @@ console.log(lockDetails50)
                         </div>
                       </div>
                     </div>
-                  </Link>
+                    </Link> :
+                    <Link to="/Preview100"> 
+                    <div className="forsage_card locked_box"
+                    // style={{
+                    //   backgroundImage: `url(${purplesedo})`,
+                    //   backgroundSize: "cover",
+                    // }}
+                    >
+                      {/* <div className='blue_color'>
+                      <img src={purplesedo} alt='blue_color' className='blue_color_img' />
+                    </div> */}
+                      <div className="card_menu">
+                      <div className="doller_circle">
+                      {lockDetails100 === true?  <span className="unlocked_circle"></span> : "" }
+                        <h4>$100</h4> 
+                       
+                      </div>
+                        <h4>
+                          {box100 ? ((100 - 100 * 0.15) / 2) * box100 : "0.00"}{" "}
+                          USDT
+                        </h4>
+                      </div>
+
+                      <div className="preview_card_sec">
+                        <div className="forsage_step">{blueElements100}</div>
+
+                        <div className="prievi_btn">
+                          <button disabled>
+                            Locked{" "}
+                            <span>
+                              <img
+                                src={img28topicon}
+                                alt="img28topicon"
+                                className="img28topicon1"
+                              />
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    </Link>
+                  }
+                  
                 </div>
 
                 <div className="col-lg-6">
+                 {lockDetails200 == true ? 
                   <Link to="/Preview200">
-                    <div
-                      className="forsage_card"
+                    <div className="forsage_card"
                     // style={{
                     //   backgroundImage: `url(${pinksedo})`,
                     //   backgroundSize: "cover",
@@ -1182,10 +1264,52 @@ console.log(lockDetails50)
                         </div>
                       </div>
                     </div>
+                  </Link> :
+                  <Link>
+                    <div className="forsage_card locked_box"
+                    // style={{
+                    //   backgroundImage: `url(${pinksedo})`,
+                    //   backgroundSize: "cover",
+                    // }}
+                    >
+                      {/* <div className='blue_color'>
+                      <img src={pinksedo} alt='blue_color' className='blue_color_img' />
+                    </div> */}
+                      <div className="card_menu">
+                      <div className="doller_circle">
+                      {lockDetails200 === true?  <span className="unlocked_circle"></span> : "" }
+                        <h4>$200</h4> 
+                       
+                      </div>
+                        <h4>
+                          {box200 ? ((200 - 200 * 0.15) / 2) * box200 : "0.00"}{" "}
+                          USDT
+                        </h4>
+                      </div>
+
+                      <div className="preview_card_sec">
+                        <div className="forsage_step">{blueElements200}</div>
+
+                        <div className="prievi_btn">
+                          <button disabled>
+                            Locked{" "}
+                            <span>
+                              <img
+                                src={img28topicon}
+                                alt="img28topicon"
+                                className="img28topicon1"
+                              />
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </Link>
+                   }
                 </div>
 
                 <div className="col-lg-6">
+                {lockDetails500 == true ?       
                   <Link to="/Preview500">
                     <div
                       className="forsage_card"
@@ -1213,7 +1337,7 @@ console.log(lockDetails50)
                         <div className="forsage_step">{blueElements500}</div>
 
                         <div className="prievi_btn">
-                          <button>
+                          <button >
                             Preview{" "}
                             <span>
                               <img
@@ -1226,7 +1350,48 @@ console.log(lockDetails50)
                         </div>
                       </div>
                     </div>
+                  </Link> :
+                  <Link>
+                    <div  className="forsage_card locked_box"
+                    // style={{
+                    //   backgroundImage: `url(${goldsedo})`,
+                    //   backgroundSize: "cover",
+                    // }}
+                    >
+                      {/* <div className='blue_color'>
+                      <img src={goldsedo} alt='blue_color' className='blue_color_img gold_blue' />
+                    </div> */}
+                      <div className="card_menu">
+                      <div className="doller_circle">
+                      {lockDetails500 === true?  <span className="unlocked_circle"></span> : "" }
+                        <h4>$500</h4> 
+                       
+                      </div>
+                        <h4>
+                          {box500 ? ((500 - 500 * 0.15) / 2) * box500 : "0.00"}{" "}
+                          USDT
+                        </h4>
+                      </div>
+
+                      <div className="preview_card_sec">
+                        <div className="forsage_step">{blueElements500}</div>
+
+                        <div className="prievi_btn">
+                          <button disabled>
+                            Locked{" "}
+                            <span>
+                              <img
+                                src={img28topicon}
+                                alt="img28topicon"
+                                className="img28topicon1"
+                              />
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </Link>
+                }
                 </div>
 
                 {/* <div className='col-lg-6'>
@@ -1252,6 +1417,8 @@ console.log(lockDetails50)
               </div> */}
 
                 <div className="col-lg-6">
+                {lockDetails100 == true ? 
+                   
                   <Link to="/Preview1000">
                     <div
                       className="forsage_card"
@@ -1294,7 +1461,50 @@ console.log(lockDetails50)
                         </div>
                       </div>
                     </div>
+                  </Link> : 
+                  <Link to="/Preview1000">
+                  <div  className="forsage_card locked_box"
+                    // style={{
+                    //   backgroundImage: `url(${greensedo})`,
+                    //   backgroundSize: "cover",
+                    // }}
+                    >
+                      {/* <div className='blue_color'>
+                      <img src={greensedo} alt='blue_color' className='blue_color_img ' />
+                    </div> */}
+                      <div className="card_menu">
+                      <div className="doller_circle">
+                      {lockDetails1000 === true?  <span className="unlocked_circle"></span> : "" }
+                        <h4>$1000</h4> 
+                       
+                      </div>
+                        <h4>
+                          {box1000
+                            ? ((1000 - 1000 * 0.15) / 2) * box1000
+                            : "0.00"}{" "}
+                          USDT
+                        </h4>
+                      </div>
+
+                      <div className="preview_card_sec">
+                        <div className="forsage_step">{blueElements1000}</div>
+
+                        <div className="prievi_btn">
+                          <button disabled>
+                            Locked{" "}
+                            <span>
+                              <img
+                                src={img28topicon}
+                                alt="img28topicon"
+                                className="img28topicon1"
+                              />
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </Link>
+                }
                 </div>
               </div>
             </div>
