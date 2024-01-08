@@ -71,10 +71,10 @@ const Partnerstable = () => {
     const wallet_address = userDataReal?.data?.wallet_address;
   
     const { contract } = useContract(
-      "0x03D95fb8da5e9A147D3bC6dC03C3D75F12Cb11a9"
+      "0xc1931Dc38541A982da5470f10Bf5C3Ed51F40490"
     );
     const { contract: USDTContract } = useContract(
-      "0xAa8491238dEA61768fA853cbCD3E324F3FC79466"
+      "0x9f2C886E49b6851f8488F8818DDBADFd16B13e7a"
     );
 
     const toggleDropdown2 = () => {
