@@ -2363,3 +2363,18 @@ span.inactive {
     width: 163px;
     margin: 19px;  
 }
+
+
+
+/* For images with class .bgbnb */
+.bgbnb img {
+  width: 100% !important;
+  border-radius: 8px;
+}
+
+/* Hide .main_desktop_logo on screens with a maximum width of 767px */
+@media (max-width: 767px) {
+  .main_desktop_logo {
+      display: none !important;;
+  }
+}
