@@ -119,7 +119,7 @@ useEffect(()=>{
           <div className="pri_id_img">
             <img src={img1} alt="logo" className="logoimg_priview" />
             <p>Preview ID</p>
-            <div className="input_btn">
+            <div className="input_btn desktop_search_field">
               <input
                 value={previewID}
                 type="number"
