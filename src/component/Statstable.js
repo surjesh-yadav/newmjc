@@ -149,7 +149,6 @@ const Statstable = () => {
                              {item.user_id}
                             </Link>
                           </td>
-                          
                           <td>
                             <div className="link_icon">
                               <p>

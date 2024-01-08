@@ -18,6 +18,7 @@ import goldsedo from "../image/gold-blur.png";
 import tiffanysedo from "../image/tiffany-blur.png";
 import greensedo from "../image/green-blur.png";
 import svg31viewicon from "../image/svg-image-31.svg";
+import bgbnb from '../image/bg.webp'
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import PriviewId from "./PriviewId";
@@ -55,7 +56,7 @@ const Dashboard = () => {
   let [stakwallet, setStakeWallet] = useState()
   const isValidUSDTamount = Number(USDTAmt) >= 20 || USDTAmt == "";
   const sdk = useSDK()
-
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   var storedData = localStorage.getItem('userData');
   var userDataLocal = JSON.parse(storedData);
@@ -735,6 +736,45 @@ const Dashboard = () => {
 
   getBnbBalance()
 
+
+  const [userName, setUserName] = useState('');
+  const [userProfile, setUserProfile] = useState(null);
+
+  const handleUserName = (e) => {
+    setUserName(e.target.value);
+  };
+
+  const handleUserProfile = (e) => {
+    setUserProfile(e.target.files[0]);
+  };
+
+
+const uploadProfile = async (event) => {
+  event.preventDefault()
+  try {
+    const formData = {
+      user_name: userName,
+      link: userProfile 
+    }
+    console.log(formData)
+    const response = await fetch('http://localhost:3200/profile/upload', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log('Profile uploaded successfully:', data);
+    } else {
+      console.error('Error uploading profile:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+};
+
+
+
   return (
     <React.Fragment>
 
@@ -766,6 +806,25 @@ const Dashboard = () => {
       <Navbar />
       <ToastContainer />
       <div className="content">
+      {/* {isModalOpen && (
+        <div className="popupmainbuy">
+          <div class="modal-content">
+             
+            <div class="modal-body text-center form_inner">
+              <form onSubmit={uploadProfile} className="user_dat_form">
+                  <input onChange={handleUserName} name="username" type="text" placeholder="User Name" maxlength="10" required/>
+                  <input onChange={handleUserProfile} name="profile" type="file" accept=".png, .jpg" required/>
+                  <button
+                    type="submit"
+                    class="btn btn-primary center mx-auto modal-button"
+                    data-dismiss="modal">
+                    Submit
+                  </button> 
+              </form>
+            </div>
+          </div>
+        </div>
+      )} */}
         <div className="container">
        
           <div className="personal_user">
@@ -777,9 +836,7 @@ const Dashboard = () => {
                   <div className="unknowuser_img">
                     <span className="unknowUser">
                       <img className="user_logo" src="/userlogo.png" />
-                      <img className="edit_icon" src="/pen.png" />
-
-                      
+                      {/* <img onClick={()=> setIsModalOpen(true)} className="edit_icon" src="/pen.png" /> */}
                     </span>
                   </div>
 
@@ -858,16 +915,13 @@ const Dashboard = () => {
                   </div>
 
                   <div
-                    className="frgx"
-                    style={{
-                      backgroundImage: `url(${frgx})`,
-                      backgroundSize: "cover",
-                    }}
+                    className=" bgbnb"
                   >
-                    <div className="login_to_show">
+                  <img src={bgbnb}/>
+                    {/* <div className="login_to_show">
                       <p>BNB Balance</p>
                       <h4 className="stacked_value">{bnbStakeValue ? parseFloat(bnbStakeValue).toFixed(4) : "0.00"} BNB</h4>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

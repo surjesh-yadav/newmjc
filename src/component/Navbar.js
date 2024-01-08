@@ -84,6 +84,8 @@ const [userData, setUserData] = useState(userDataLocal);
     return (
         <div>
             <div className="sidebar">
+            <img className='main_desktop_logo' src='/logo_main.svg'/>
+
                 <div className="sidebar_menu">
                     <div className='said_icons'>
                         <div className='logo_pri'>

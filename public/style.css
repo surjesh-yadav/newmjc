@@ -319,7 +319,7 @@ span.id_bg {
 .sidebar_menu {
   width: 100%;
   display: inline-block;
-  padding: 104px 20px;
+  padding: 10px 20px;
 }
 
 .sidebar a {
@@ -1005,10 +1005,10 @@ a#tems {
   z-index: 2;
   background-color: #242526f7;
   color: white;
-  width: 96%;
+  width: 77.5%;
   right: 32px;
   display: flex;
-  border-radius: 20px;
+  border-radius: 15px;
   padding: 10px 10px;
   justify-content: space-between;
   align-items: center;
@@ -2218,6 +2218,10 @@ input::-webkit-inner-spin-button {
     gap: 15px;
   }
 
+  .main_desktop_logo{
+   display: none;
+}
+
   .mobile_search_field{
     margin-bottom: 20px;
     justify-content: space-between;
@@ -2322,4 +2326,40 @@ span.inactive {
   border-radius: 13px;
   padding: 3px;
   cursor: pointer;
+}
+
+
+.user_dat_form input{
+   background: transparent;
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 7px;
+    color: cyan;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.user_dat_form input:focus-visible{
+   outline: none;
+}
+
+
+.user_dat_form button{
+  width: 100%;
+  margin-top: 15px;
+}
+
+
+.modal-body.text-center.form_inner {
+  padding: 25px;
+}
+
+.bgbnb img{
+  width: 100%;
+  border-radius: 8px;
+}
+
+.main_desktop_logo{
+    width: 163px;
+    margin: 19px;  
 }
