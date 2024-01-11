@@ -2378,3 +2378,15 @@ span.inactive {
       display: none !important;;
   }
 }
+
+.setTreeButton{
+  text-align: center;
+  background: skyblue;
+  padding: 5px;
+  border: navajowhite;
+  border-radius: 7px;
+  color: white;
+  margin-top: 12px;
+  width: 100%;
+  background: linear-gradient(180deg,#00e1b7,rgb(62 126 112 / 50%));
+}

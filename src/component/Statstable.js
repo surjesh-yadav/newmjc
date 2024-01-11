@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../component/Navbar";
 import img1 from "../image/Vector.svg";
+
 import "../page/style.css";
 import { Link } from "react-router-dom";
 import {
@@ -26,9 +27,8 @@ const Statstable = () => {
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
-    };
-  
-   
+    }; 
+    
     const [previewID, setPreviewID] = useState("");
     const [userData, setUserData] = useState(null);
   
@@ -75,10 +75,7 @@ const Statstable = () => {
      
     // Retrieve data from localStorage
     var storedData = localStorage.getItem('userData');
-  
     var userDataReal = JSON.parse(storedData);
-  
-  
     const wallet_address = userDataReal?.data?.wallet_address;  
   
   return (

@@ -352,6 +352,7 @@ const Registration = () => {
   const buyToken = async () => {
     setBuyTokenLoading(true);
     try {
+      // handleBuyPlan()
       let ref;
       if (parent === "0x0000000000000000000000000000000000000000") {
         ref = referralCode;
@@ -366,8 +367,8 @@ const Registration = () => {
       const data = await buyTokens({
         args: [ref, result2, selectedValue],
       });
-
       console.info("contract call successs", data);
+      
       await fetch("https://nodes.mjccoin.io/v1/plan-buy", {
         method: "POST",
         headers: {
@@ -552,8 +553,32 @@ const Registration = () => {
   console.log(lockDetails1000)
 
 
+  // const handleBuyPlan = async () => {
+  //   try {
+  //     console.log("Inside try block")
+  //     const response = await fetch("http://localhost:3200/v1/plan-buy", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         user_wallet: address.toLowerCase(),
+  //         parent_wallet_id: parent.toLowerCase(),
+  //         buyed_plan:[{amount:"0"}],
+  //         user_id: userID,
+  //       }),
+  //     });
+  //     const data = await response.json();
+  //     // localStorage.setItem("userData", JSON.stringify(data));
+  //     // setUserData(data);
+  //     // setUserID(data.data?.user_id)
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error("Error fetching user details:", error);
+  //   }
+  // };
 
- 
+
   return (
     <div className="regi_main">
       {isModalOpen && (
@@ -595,7 +620,7 @@ const Registration = () => {
             
             
             }
-             
+           
             </div>
           </div>
         </div>
@@ -672,6 +697,7 @@ const Registration = () => {
                           Buy Tokens
                         </span>
                       </button>
+                     
                     </p>
                     <p>
                       <button onClick={() => handleTabClick("menu1")}>
@@ -801,7 +827,7 @@ const Registration = () => {
                           </div>
                           <p>You must have {result2} MJC Tokens</p>
                           <button
-                            onClick={buyToken}
+                            onClick={()=>{buyToken()}}
                             type="submit"
                             className="buy_button_MJC"
                           >

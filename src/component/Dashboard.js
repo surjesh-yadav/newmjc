@@ -18,7 +18,7 @@ import goldsedo from "../image/gold-blur.png";
 import tiffanysedo from "../image/tiffany-blur.png";
 import greensedo from "../image/green-blur.png";
 import svg31viewicon from "../image/svg-image-31.svg";
-import bgbnb from '../image/bg.webp'
+import bgbnb from "../image/bg.webp";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import PriviewId from "./PriviewId";
@@ -53,12 +53,12 @@ const Dashboard = () => {
   const [referralCode, setReferralCode] = useState("");
   const [BTCprice, setBTCPrice] = useState("");
   const [BNBprice, setBNBPrice] = useState("");
-  let [stakwallet, setStakeWallet] = useState()
+  let [stakwallet, setStakeWallet] = useState();
   const isValidUSDTamount = Number(USDTAmt) >= 20 || USDTAmt == "";
-  const sdk = useSDK()
+  const sdk = useSDK();
   // const [isModalOpen, setIsModalOpen] = useState(false);
 
-  var storedData = localStorage.getItem('userData');
+  var storedData = localStorage.getItem("userData");
   var userDataLocal = JSON.parse(storedData);
 
   const [previewID, setPreviewID] = useState("");
@@ -66,9 +66,7 @@ const Dashboard = () => {
 
   const handleChange = (event) => {
     setPreviewID(event.target.value);
-
   };
-
 
   const [price, setPrice] = useState("");
   useEffect(() => {
@@ -88,15 +86,12 @@ const Dashboard = () => {
   const result2 = (userData?.data?.total_profit / price).toFixed(0);
   const recentProfitMJC = (userData?.data?.recent_profit / price).toFixed(0);
 
-
-
-  const [isDataValue, setIsDataValue] = useState(false)
+  const [isDataValue, setIsDataValue] = useState(false);
 
   useEffect(() => {
     const isData = checkData;
-    setIsDataValue(isData)
-  }, [previewID])
-
+    setIsDataValue(isData);
+  }, [previewID]);
 
   const fetchData = async () => {
     try {
@@ -110,18 +105,15 @@ const Dashboard = () => {
       const data = await response.json();
       localStorage.setItem("userData", JSON.stringify(data));
       setUserData(data);
-      setUserID(data.data?.user_id)
+      setUserID(data.data?.user_id);
     } catch (error) {
       console.error("Error fetching user details:", error);
     }
   };
 
-
-
   const handleSearch = () => {
-    fetchData()
+    fetchData();
     //getstekeTokens()
-    
   };
 
   const wallet_address = userData?.data?.wallet_address;
@@ -177,7 +169,6 @@ const Dashboard = () => {
     }
   }, [address]);
 
-
   const getDetails = async (Address) => {
     //console.log(Address.toLowerCase())
 
@@ -188,7 +179,6 @@ const Dashboard = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ address: Address.toLowerCase() }),
-
       });
       let response = await dumy.json();
 
@@ -252,15 +242,12 @@ const Dashboard = () => {
     [wallet_address]
   );
 
+
   const { data: indirectChild, isLoading: isIndirectChildLoading } =
     useContractRead(contract, "showAllInDirectChild", [wallet_address]);
 
-
   const { data: stakeBalance, isLoading: isStakeBalanceLoading } =
     useContractRead(contract, "totalStaked");
-
-
-
 
   // const { data: userLevels, isLoading: isUserLevelsLoading } = useContractRead(
   //   contract,
@@ -353,16 +340,15 @@ const Dashboard = () => {
   //   , 100] });
   // console.info("contract call successs", data);
 
-
-
-
-
-    const { data: checkData, isLoading: isCheckLoading } =
-    useContractRead(contract, "getUnlockPlanDetails", [parent, 50]);
+  const { data: checkData, isLoading: isCheckLoading } = useContractRead(
+    contract,
+    "getUnlockPlanDetails",
+    [parent, 50]
+  );
 
   const { data: getThePlansCount, isLoading: isPlanCountLoading } =
     useContractRead(contract, "getThePlanCount", [wallet_address, 50]);
-  console.log(wallet_address, "this is issue......")
+  console.log(wallet_address, "this is issue......");
 
   const { data: getThePlansCount100, isLoading: is100PlanCountLoading } =
     useContractRead(contract, "getThePlanCount", [wallet_address, 100]);
@@ -376,37 +362,38 @@ const Dashboard = () => {
   const { data: getThePlansCount1000, isLoading: is1000PlanCountLoading } =
     useContractRead(contract, "getThePlanCount", [wallet_address, 1000]);
 
-// Checking unlock plans
-   console.log(wallet_address)
-    const { data: lockDetails50, isLoading: isLockLoading50 } =
-    useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 50]);
-    console.log(lockDetails50)
-    const { data: lockDetails100, isLoading: isLockLoading100 } =
-    useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 100]);
-    console.log(lockDetails100)
+  // Checking unlock plans
+  console.log(wallet_address);
+  const { data: lockDetails50, isLoading: isLockLoading50 } = useContractRead(
+    contract,
+    "getUnlockPlanDetails",
+    [wallet_address, 50]
+  );
+  console.log(lockDetails50);
+  const { data: lockDetails100, isLoading: isLockLoading100 } = useContractRead(
+    contract,
+    "getUnlockPlanDetails",
+    [wallet_address, 100]
+  );
+  console.log(lockDetails100);
 
-    const { data: lockDetails200, isLoading: isLockLoading200 } =
-    useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 200]);
-    console.log(lockDetails200)
+  const { data: lockDetails200, isLoading: isLockLoading200 } = useContractRead(
+    contract,
+    "getUnlockPlanDetails",
+    [wallet_address, 200]
+  );
+  console.log(lockDetails200);
 
-    const { data: lockDetails500, isLoading: isLockLoading500 } =
-    useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 500]);
-    console.log(lockDetails500)
+  const { data: lockDetails500, isLoading: isLockLoading500 } = useContractRead(
+    contract,
+    "getUnlockPlanDetails",
+    [wallet_address, 500]
+  );
+  console.log(lockDetails500);
 
-    const { data: lockDetails1000, isLoading: isLockLoading1000 } =
+  const { data: lockDetails1000, isLoading: isLockLoading1000 } =
     useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 1000]);
-    console.log(lockDetails1000)
-
-
-
-
-
-
-
-
-
-
-
+  console.log(lockDetails1000);
 
   //     toast.success("Tokens Bought Successfully", {
   //       position: toast.POSITION.TOP_CENTER,
@@ -498,9 +485,7 @@ const Dashboard = () => {
     //   !isOwnerLoading
   }, []);
 
-
   const postData = async (userId) => {
-
     const apiUrl = "https://nodes.mjccoin.io/v1/alldetails";
 
     try {
@@ -626,16 +611,11 @@ const Dashboard = () => {
     5
   );
 
-  const modifiedAddress1 = removeAndReplaceMiddleCharacters(
-    parent,
-    30,
-    5
-  );
+  const modifiedAddress1 = removeAndReplaceMiddleCharacters(parent, 30, 5);
 
+  var userIDs = localStorage.getItem("userID");
 
-  var userIDs = localStorage.getItem('userID');
-
-  const [userID, setUserID] = useState(userIDs)
+  const [userID, setUserID] = useState(userIDs);
 
   const getParentDetails = async (parent) => {
     try {
@@ -647,12 +627,9 @@ const Dashboard = () => {
         body: JSON.stringify({ address: parent }),
       });
       let response = await dumy.json();
-      setUserID(response.data.user_id)
+      setUserID(response.data.user_id);
 
       localStorage.setItem("userID", JSON.stringify(response.data.user_id));
-
-
- 
 
       if (!response) {
         // setLoading(true)
@@ -667,13 +644,9 @@ const Dashboard = () => {
     }
   };
 
- 
-
-
   const checkdataValue = checkData;
 
   const fetchParentData = async () => {
-
     try {
       const response = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
         method: "POST",
@@ -685,59 +658,57 @@ const Dashboard = () => {
       const data = await response.json();
       localStorage.setItem("userData", JSON.stringify(data));
       setUserData(data);
-
     } catch (error) {
       console.error("Error fetching user details:", error);
     }
   };
 
   const handleParentSearch = () => {
-    getParentDetails(parent)
+    getParentDetails(parent);
 
     if (checkdataValue === true) {
-      fetchParentData()
+      fetchParentData();
     }
   };
- 
 
-     const ID = userData?.data?.user_id
+  const ID = userData?.data?.user_id;
 
   const getstekeTokens = async (userID) => {
     try {
-      let data = await fetch(`https://nodes.mjccoin.io/steck/get-token?user_id=${ID}`)
-      let response = await data.json()
+      let data = await fetch(
+        `https://nodes.mjccoin.io/steck/get-token?user_id=${ID}`
+      );
+      let response = await data.json();
       //console.log (previewID,"ussssddddd")
-      setStakeWallet(response.data.total)
+      setStakeWallet(response.data.total);
       //console.log()
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-    getstekeTokens(userID)
-  }, [ID])
-
+    getstekeTokens(userID);
+  }, [ID]);
 
   // const { data: getThePlanCount, isLoading: isPlanCountLoading } = useContractRead(
   //   contract,
   //   "getThePlanCount",
   //   [address]
   // );
-  const [bnbStakeValue, setBNBStakeValue] = useState("")
+  const [bnbStakeValue, setBNBStakeValue] = useState("");
   const getBnbBalance = async () => {
     try {
       const balance = await sdk.wallet.balance();
-      setBNBStakeValue(balance.displayValue).toFixed(2)
+      setBNBStakeValue(balance.displayValue).toFixed(2);
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
-  }
+  };
 
-  getBnbBalance()
+  getBnbBalance();
 
-
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
   const [userProfile, setUserProfile] = useState(null);
 
   const handleUserName = (e) => {
@@ -748,65 +719,98 @@ const Dashboard = () => {
     setUserProfile(e.target.files[0]);
   };
 
+  const uploadProfile = async (event) => {
+    event.preventDefault();
+    try {
+      const formData = {
+        user_name: userName,
+        link: userProfile,
+      };
+      console.log(formData);
+      const response = await fetch("http://localhost:3200/profile/upload", {
+        method: "POST",
+        body: formData,
+      });
 
-const uploadProfile = async (event) => {
-  event.preventDefault()
-  try {
-    const formData = {
-      user_name: userName,
-      link: userProfile 
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Profile uploaded successfully:", data);
+      } else {
+        console.error("Error uploading profile:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
     }
-    console.log(formData)
-    const response = await fetch('http://localhost:3200/profile/upload', {
-      method: 'POST',
-      body: formData,
-    });
+  };
 
-    if (response.ok) {
+  const handleBuyPlan = async () => {
+    try {
+      console.log("Inside try block")
+      const response = await fetch("http://localhost:3200/v1/plan-buy", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_wallet: address.toLowerCase(),
+          parent_wallet_id: parent.toLowerCase(),
+          buyed_plan:[{amount:"0"}],
+          user_id: ID,
+        }),
+      });
       const data = await response.json();
-      console.log('Profile uploaded successfully:', data);
-    } else {
-      console.error('Error uploading profile:', response.statusText);
+      toast.success("User tree is Successfully set", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      // localStorage.setItem("userData", JSON.stringify(data));
+      // setUserData(data);
+      // setUserID(data.data?.user_id)
+      console.log(data);
+    } catch (error) {
+      toast.success("User tree is failed", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      console.error("Error fetching user details:", error);
     }
-  } catch (error) {
-    console.error('Error:', error.message);
-  }
-};
-
-
+  };
 
   return (
     <React.Fragment>
-
       <div className="container">
         <div className="pre_Id">
-        <div className="pri_id_cnct_btn">
-          <div className="pri_id_img">
-            <img src={img1} alt="logo" className="logoimg_priview" />
-            <p>Preview ID</p>
-            <div className="input_btn desktop_search_field">
-              <input
-                value={previewID}
-                type="number"
-                onChange={handleChange}
-                className="input_NUmber"
-                placeholder="Preview ID"
-              />
-             <button type="button" onClick={() => { handleSearch() }}>
-                Search
-              </button>
+          <div className="pri_id_cnct_btn">
+            <div className="pri_id_img">
+              <img src={img1} alt="logo" className="logoimg_priview" />
+              <p>Preview ID</p>
+              <div className="input_btn desktop_search_field">
+                <input
+                  value={previewID}
+                  type="number"
+                  onChange={handleChange}
+                  className="input_NUmber"
+                  placeholder="Preview ID"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleSearch();
+                  }}
+                >
+                  Search
+                </button>
+              </div>
             </div>
-          </div>
-          {/* <div className="connect_btn desktop_connect_button">
+            {/* <div className="connect_btn desktop_connect_button">
             <ConnectWallet />
           </div> */}
           </div>
         </div>
       </div>
       <Navbar />
+
       <ToastContainer />
       <div className="content">
-      {/* {isModalOpen && (
+        {/* {isModalOpen && (
         <div className="popupmainbuy">
           <div class="modal-content">
              
@@ -826,11 +830,8 @@ const uploadProfile = async (event) => {
         </div>
       )} */}
         <div className="container">
-       
           <div className="personal_user">
- 
             <div className="row">
-
               <div className="col-lg-6 profile-section">
                 <div className="personal_user_left">
                   <div className="unknowuser_img">
@@ -843,29 +844,52 @@ const uploadProfile = async (event) => {
                   <div className="id_user right_text">
                     <h1>
                       MJC User
-
-                      {userData?.data?.user_id ? <span className="id_bg id_user_top">
-                        ID{loading ? "loading" : userData.data?.user_id}
-                      </span>
-                      :  <span className="id_bg id_user_top">
-                        ID{loading ? "loading" : userID}
-                      </span> }
-                                         
+                      {userData?.data?.user_id ? (
+                        <span className="id_bg id_user_top">
+                          ID{loading ? "loading" : userData.data?.user_id}
+                        </span>
+                      ) : (
+                        <span className="id_bg id_user_top">
+                          ID{loading ? "loading" : userID}
+                        </span>
+                      )}
                     </h1>
-                    <span className={`${parent !== "0x0000000000000000000000000000000000000000" && parent !== undefined  ? "active" : "inactive"}`} style={{ fontSize: "13px" }}>
-                     {`  
-                      ${!isParentLoading && parent !== "0x0000000000000000000000000000000000000000" && parent !== undefined  ?
-                         "Activated"
-                        : "Inactive"}`}
+                    <span
+                      className={`${
+                        parent !==
+                          "0x0000000000000000000000000000000000000000" &&
+                        parent !== undefined
+                          ? "active"
+                          : "inactive"
+                      }`}
+                      style={{ fontSize: "13px" }}
+                    >
+                      {`  
+                      ${
+                        !isParentLoading &&
+                        parent !==
+                          "0x0000000000000000000000000000000000000000" &&
+                        parent !== undefined
+                          ? "Activated"
+                          : "Inactive"
+                      }`}
                     </span>
-                    <p style={{ width: "200px",  fontSize: "13px" }}>
+                    <p style={{ width: "200px", fontSize: "13px" }}>
                       {modifiedAddress}{" "}
                     </p>
 
-                    <span onClick={handleParentSearch} className="id_bg id_user_top parent_address" style={{ width: "200px", fontSize: "13px" }}> {`Upline  
-                      ${!isParentLoading && modifiedAddress1  ?
-                        modifiedAddress1
-                        : "Connect Wallet"}`}
+                    <span
+                      onClick={handleParentSearch}
+                      className="id_bg id_user_top parent_address"
+                      style={{ width: "200px", fontSize: "13px" }}
+                    >
+                      {" "}
+                      {`Upline  
+                      ${
+                        !isParentLoading && modifiedAddress1
+                          ? modifiedAddress1
+                          : "Connect Wallet"
+                      }`}
                     </span>
                     {/* <span className='copy_con'><img src={img21copy} className='img21copy' alt='copy'/></span> */}
                   </div>
@@ -908,16 +932,12 @@ const uploadProfile = async (event) => {
                   >
                     <div className="login_to_show">
                       <p>Stake Balance</p>
-                      <h4 className="stacked_value">
-                        {stakwallet} MJC
-                      </h4>
+                      <h4 className="stacked_value">{stakwallet} MJC</h4>
                     </div>
                   </div>
 
-                  <div
-                    className=" bgbnb"
-                  >
-                  <img src={bgbnb}/>
+                  <div className=" bgbnb">
+                    <img src={bgbnb} />
                     {/* <div className="login_to_show">
                       <p>BNB Balance</p>
                       <h4 className="stacked_value">{bnbStakeValue ? parseFloat(bnbStakeValue).toFixed(4) : "0.00"} BNB</h4>
@@ -935,10 +955,10 @@ const uploadProfile = async (event) => {
               <div className="col-lg-3 col-sm-6 left-box left-box2">
                 <div
                   className="teams_all_card Partners1"
-                // style={{
-                //   backgroundImage: `url(${Partners})`,
-                //   backgroundSize: "cover",
-                // }}
+                  // style={{
+                  //   backgroundImage: `url(${Partners})`,
+                  //   backgroundSize: "cover",
+                  // }}
                 >
                   <p className="card_title">Partners</p>
                   <h1>
@@ -975,15 +995,19 @@ const uploadProfile = async (event) => {
               <div className="col-lg-3 col-sm-6 right-box left-box2">
                 <div
                   className="teams_all_card"
-                // style={{
-                //   backgroundImage: `url(${team})`,
-                //   backgroundSize: "cover",
-                // }}
+                  // style={{
+                  //   backgroundImage: `url(${team})`,
+                  //   backgroundSize: "cover",
+                  // }}
                 >
                   <p className="card_title">Team</p>
                   <h1>{!isIndirectChildLoading ? indirectChild?.length : 0}</h1>
-
-                 
+                  { !parent || !address || parent == "0x0000000000000000000000000000000000000000" ?
+                  
+                  <button disabled onClick={handleBuyPlan} className="setTreeButton">Set Tree</button>
+                  : 
+                  <button onClick={handleBuyPlan} className="setTreeButton">Set Tree</button>
+                   }       
                 </div>
               </div>
 
@@ -1007,10 +1031,10 @@ const uploadProfile = async (event) => {
               <div className="col-lg-6">
                 <div
                   className="teams_all_card"
-                // style={{
-                //   backgroundImage: `url(${Profits})`,
-                //   backgroundSize: "cover",
-                // }}
+                  // style={{
+                  //   backgroundImage: `url(${Profits})`,
+                  //   backgroundSize: "cover",
+                  // }}
                 >
                   <p className="card_title">Profits</p>
                   <div className="Profits-number">
@@ -1053,7 +1077,6 @@ const uploadProfile = async (event) => {
             </div>
           </div>
         </div>
-
         <div className="archivment_img">
           <div className="container">
             <div className="achievements_cup">
@@ -1110,345 +1133,392 @@ const uploadProfile = async (event) => {
             <div className="forsage_card_main">
               <div className="row">
                 <div className="col-lg-6">
-                 
-                  {lockDetails50 == true ? 
+                  {lockDetails50 == true ? (
                     <Link aria-disabled="true" to="/Preview50">
-                    <div className="forsage_card"
-                    // style={{
-                    //   backgroundImage: `url(${bluesedo})`,
-                    //   backgroundSize: "cover",
-                    // }}
-                    >
-                      {/* <div className='blue_color'>
+                      <div
+                        className="forsage_card"
+                        // style={{
+                        //   backgroundImage: `url(${bluesedo})`,
+                        //   backgroundSize: "cover",
+                        // }}
+                      >
+                        {/* <div className='blue_color'>
                       <img src={bluesedo} alt='blue_color' className='blue_color_img' />
                     </div> */}
-                      <div className="card_menu">
-                      <div className="doller_circle">
-                      {lockDetails50 === true?  <span className="unlocked_circle"></span> : "" }
-                        <h4>$50</h4> 
+                        <div className="card_menu">
+                          <div className="doller_circle">
+                            {lockDetails50 === true ? (
+                              <span className="unlocked_circle"></span>
+                            ) : (
+                              ""
+                            )}
+                            <h4>$50</h4>
+                          </div>
+
+                          <h4>
+                            {box50 ? ((50 - 50 * 0.15) / 2) * box50 : "0.00"}{" "}
+                            USDT
+                          </h4>
                         </div>
 
-                        <h4>
-                          {box50 ? ((50 - 50 * 0.15) / 2) * box50 : "0.00"} USDT
-                        </h4>
-                      </div>
-
-                      <div className="preview_card_sec">
-                        <div className="forsage_step">{blueElements50}</div>
-                        <div className="prievi_btn">
-                          <button>
-                            Preview{" "}
-                            <span>
-                              <img
-                                src={img28topicon}
-                                alt="img28topicon"
-                                className="img28topicon1"
-                              />
-                            </span>
-                          </button>
+                        <div className="preview_card_sec">
+                          <div className="forsage_step">{blueElements50}</div>
+                          <div className="prievi_btn">
+                            <button>
+                              Preview{" "}
+                              <span>
+                                <img
+                                  src={img28topicon}
+                                  alt="img28topicon"
+                                  className="img28topicon1"
+                                />
+                              </span>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div></Link> : 
-       
+                    </Link>
+                  ) : (
                     <Link aria-disabled="true">
-                    <div className="forsage_card locked_box"
-                    // style={{
-                    //   backgroundImage: `url(${bluesedo})`,
-                    //   backgroundSize: "cover",
-                    // }}
-                    >
-                      {/* <div className='blue_color'>
+                      <div
+                        className="forsage_card locked_box"
+                        // style={{
+                        //   backgroundImage: `url(${bluesedo})`,
+                        //   backgroundSize: "cover",
+                        // }}
+                      >
+                        {/* <div className='blue_color'>
                       <img src={bluesedo} alt='blue_color' className='blue_color_img' />
                     </div> */}
-                      <div className="card_menu">
-                      <div className="doller_circle">
-                      {lockDetails50 === true?  <span className="unlocked_circle"></span> : "" }
-                        <h4>$50</h4> 
+                        <div className="card_menu">
+                          <div className="doller_circle">
+                            {lockDetails50 === true ? (
+                              <span className="unlocked_circle"></span>
+                            ) : (
+                              ""
+                            )}
+                            <h4>$50</h4>
+                          </div>
+
+                          <h4>
+                            {box50 ? ((50 - 50 * 0.15) / 2) * box50 : "0.00"}{" "}
+                            USDT
+                          </h4>
                         </div>
 
-                        <h4>
-                          {box50 ? ((50 - 50 * 0.15) / 2) * box50 : "0.00"} USDT
-                        </h4>
-                      </div>
+                        <div className="preview_card_sec">
+                          <div className="forsage_step">{blueElements50}</div>
 
-                      <div className="preview_card_sec">
-                        <div className="forsage_step">{blueElements50}</div>
-
-                        <div className="prievi_btn">
-                          <button disabled>
-                            Locked{" "}
-                            <span>
-                              <img
-                                src={img28topicon}
-                                alt="img28topicon"
-                                className="img28topicon1"
-                              />
-                            </span>
-                          </button>
+                          <div className="prievi_btn">
+                            <button disabled>
+                              Locked{" "}
+                              <span>
+                                <img
+                                  src={img28topicon}
+                                  alt="img28topicon"
+                                  className="img28topicon1"
+                                />
+                              </span>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
                     </Link>
-                   }
-                   
-                  
+                  )}
                 </div>
 
-                <div className="col-lg-6"> 
-                  {lockDetails100 === true ? 
+                <div className="col-lg-6">
+                  {lockDetails100 === true ? (
                     <Link to="/Preview100">
-                    <div className="forsage_card"
-                    // style={{
-                    //   backgroundImage: `url(${purplesedo})`,
-                    //   backgroundSize: "cover",
-                    // }}
-                    >
-                      {/* <div className='blue_color'>
+                      <div
+                        className="forsage_card"
+                        // style={{
+                        //   backgroundImage: `url(${purplesedo})`,
+                        //   backgroundSize: "cover",
+                        // }}
+                      >
+                        {/* <div className='blue_color'>
                       <img src={purplesedo} alt='blue_color' className='blue_color_img' />
                     </div> */}
-                      <div className="card_menu">
-                      <div className="doller_circle">
-                      {lockDetails100 === true?  <span className="unlocked_circle"></span> : "" }
-                        <h4>$100</h4> 
-                       
-                      </div>
-                        <h4>
-                          {box100 ? ((100 - 100 * 0.15) / 2) * box100 : "0.00"}{" "}
-                          USDT
-                        </h4>
-                      </div>
+                        <div className="card_menu">
+                          <div className="doller_circle">
+                            {lockDetails100 === true ? (
+                              <span className="unlocked_circle"></span>
+                            ) : (
+                              ""
+                            )}
+                            <h4>$100</h4>
+                          </div>
+                          <h4>
+                            {box100
+                              ? ((100 - 100 * 0.15) / 2) * box100
+                              : "0.00"}{" "}
+                            USDT
+                          </h4>
+                        </div>
 
-                      <div className="preview_card_sec">
-                        <div className="forsage_step">{blueElements100}</div>
+                        <div className="preview_card_sec">
+                          <div className="forsage_step">{blueElements100}</div>
 
-                        <div className="prievi_btn">
-                          <button>
-                            Preview{" "}
-                            <span>
-                              <img
-                                src={img28topicon}
-                                alt="img28topicon"
-                                className="img28topicon1"
-                              />
-                            </span>
-                          </button>
+                          <div className="prievi_btn">
+                            <button>
+                              Preview{" "}
+                              <span>
+                                <img
+                                  src={img28topicon}
+                                  alt="img28topicon"
+                                  className="img28topicon1"
+                                />
+                              </span>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    </Link> :
-                    <Link to="/Preview100"> 
-                    <div className="forsage_card locked_box"
-                    // style={{
-                    //   backgroundImage: `url(${purplesedo})`,
-                    //   backgroundSize: "cover",
-                    // }}
-                    >
-                      {/* <div className='blue_color'>
-                      <img src={purplesedo} alt='blue_color' className='blue_color_img' />
-                    </div> */}
-                      <div className="card_menu">
-                      <div className="doller_circle">
-                      {lockDetails100 === true?  <span className="unlocked_circle"></span> : "" }
-                        <h4>$100</h4> 
-                       
-                      </div>
-                        <h4>
-                          {box100 ? ((100 - 100 * 0.15) / 2) * box100 : "0.00"}{" "}
-                          USDT
-                        </h4>
-                      </div>
-
-                      <div className="preview_card_sec">
-                        <div className="forsage_step">{blueElements100}</div>
-
-                        <div className="prievi_btn">
-                          <button disabled>
-                            Locked{" "}
-                            <span>
-                              <img
-                                src={img28topicon}
-                                alt="img28topicon"
-                                className="img28topicon1"
-                              />
-                            </span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
                     </Link>
-                  }
-                  
+                  ) : (
+                    <Link to="/Preview100">
+                      <div
+                        className="forsage_card locked_box"
+                        // style={{
+                        //   backgroundImage: `url(${purplesedo})`,
+                        //   backgroundSize: "cover",
+                        // }}
+                      >
+                        {/* <div className='blue_color'>
+                      <img src={purplesedo} alt='blue_color' className='blue_color_img' />
+                    </div> */}
+                        <div className="card_menu">
+                          <div className="doller_circle">
+                            {lockDetails100 === true ? (
+                              <span className="unlocked_circle"></span>
+                            ) : (
+                              ""
+                            )}
+                            <h4>$100</h4>
+                          </div>
+                          <h4>
+                            {box100
+                              ? ((100 - 100 * 0.15) / 2) * box100
+                              : "0.00"}{" "}
+                            USDT
+                          </h4>
+                        </div>
+
+                        <div className="preview_card_sec">
+                          <div className="forsage_step">{blueElements100}</div>
+
+                          <div className="prievi_btn">
+                            <button disabled>
+                              Locked{" "}
+                              <span>
+                                <img
+                                  src={img28topicon}
+                                  alt="img28topicon"
+                                  className="img28topicon1"
+                                />
+                              </span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  )}
                 </div>
 
                 <div className="col-lg-6">
-                 {lockDetails200 == true ? 
-                  <Link to="/Preview200">
-                    <div className="forsage_card"
-                    // style={{
-                    //   backgroundImage: `url(${pinksedo})`,
-                    //   backgroundSize: "cover",
-                    // }}
-                    >
-                      {/* <div className='blue_color'>
+                  {lockDetails200 == true ? (
+                    <Link to="/Preview200">
+                      <div
+                        className="forsage_card"
+                        // style={{
+                        //   backgroundImage: `url(${pinksedo})`,
+                        //   backgroundSize: "cover",
+                        // }}
+                      >
+                        {/* <div className='blue_color'>
                       <img src={pinksedo} alt='blue_color' className='blue_color_img' />
                     </div> */}
-                      <div className="card_menu">
-                      <div className="doller_circle">
-                      {lockDetails200 === true?  <span className="unlocked_circle"></span> : "" }
-                        <h4>$200</h4> 
-                       
-                      </div>
-                        <h4>
-                          {box200 ? ((200 - 200 * 0.15) / 2) * box200 : "0.00"}{" "}
-                          USDT
-                        </h4>
-                      </div>
+                        <div className="card_menu">
+                          <div className="doller_circle">
+                            {lockDetails200 === true ? (
+                              <span className="unlocked_circle"></span>
+                            ) : (
+                              ""
+                            )}
+                            <h4>$200</h4>
+                          </div>
+                          <h4>
+                            {box200
+                              ? ((200 - 200 * 0.15) / 2) * box200
+                              : "0.00"}{" "}
+                            USDT
+                          </h4>
+                        </div>
 
-                      <div className="preview_card_sec">
-                        <div className="forsage_step">{blueElements200}</div>
+                        <div className="preview_card_sec">
+                          <div className="forsage_step">{blueElements200}</div>
 
-                        <div className="prievi_btn">
-                          <button>
-                            Preview{" "}
-                            <span>
-                              <img
-                                src={img28topicon}
-                                alt="img28topicon"
-                                className="img28topicon1"
-                              />
-                            </span>
-                          </button>
+                          <div className="prievi_btn">
+                            <button>
+                              Preview{" "}
+                              <span>
+                                <img
+                                  src={img28topicon}
+                                  alt="img28topicon"
+                                  className="img28topicon1"
+                                />
+                              </span>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link> :
-                  <Link>
-                    <div className="forsage_card locked_box"
-                    // style={{
-                    //   backgroundImage: `url(${pinksedo})`,
-                    //   backgroundSize: "cover",
-                    // }}
-                    >
-                      {/* <div className='blue_color'>
+                    </Link>
+                  ) : (
+                    <Link>
+                      <div
+                        className="forsage_card locked_box"
+                        // style={{
+                        //   backgroundImage: `url(${pinksedo})`,
+                        //   backgroundSize: "cover",
+                        // }}
+                      >
+                        {/* <div className='blue_color'>
                       <img src={pinksedo} alt='blue_color' className='blue_color_img' />
                     </div> */}
-                      <div className="card_menu">
-                      <div className="doller_circle">
-                      {lockDetails200 === true?  <span className="unlocked_circle"></span> : "" }
-                        <h4>$200</h4> 
-                       
-                      </div>
-                        <h4>
-                          {box200 ? ((200 - 200 * 0.15) / 2) * box200 : "0.00"}{" "}
-                          USDT
-                        </h4>
-                      </div>
+                        <div className="card_menu">
+                          <div className="doller_circle">
+                            {lockDetails200 === true ? (
+                              <span className="unlocked_circle"></span>
+                            ) : (
+                              ""
+                            )}
+                            <h4>$200</h4>
+                          </div>
+                          <h4>
+                            {box200
+                              ? ((200 - 200 * 0.15) / 2) * box200
+                              : "0.00"}{" "}
+                            USDT
+                          </h4>
+                        </div>
 
-                      <div className="preview_card_sec">
-                        <div className="forsage_step">{blueElements200}</div>
+                        <div className="preview_card_sec">
+                          <div className="forsage_step">{blueElements200}</div>
 
-                        <div className="prievi_btn">
-                          <button disabled>
-                            Locked{" "}
-                            <span>
-                              <img
-                                src={img28topicon}
-                                alt="img28topicon"
-                                className="img28topicon1"
-                              />
-                            </span>
-                          </button>
+                          <div className="prievi_btn">
+                            <button disabled>
+                              Locked{" "}
+                              <span>
+                                <img
+                                  src={img28topicon}
+                                  alt="img28topicon"
+                                  className="img28topicon1"
+                                />
+                              </span>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                   }
+                    </Link>
+                  )}
                 </div>
 
                 <div className="col-lg-6">
-                {lockDetails500 == true ?       
-                  <Link to="/Preview500">
-                    <div
-                      className="forsage_card"
-                    // style={{
-                    //   backgroundImage: `url(${goldsedo})`,
-                    //   backgroundSize: "cover",
-                    // }}
-                    >
-                      {/* <div className='blue_color'>
+                  {lockDetails500 == true ? (
+                    <Link to="/Preview500">
+                      <div
+                        className="forsage_card"
+                        // style={{
+                        //   backgroundImage: `url(${goldsedo})`,
+                        //   backgroundSize: "cover",
+                        // }}
+                      >
+                        {/* <div className='blue_color'>
                       <img src={goldsedo} alt='blue_color' className='blue_color_img gold_blue' />
                     </div> */}
-                      <div className="card_menu">
-                      <div className="doller_circle">
-                      {lockDetails500 === true?  <span className="unlocked_circle"></span> : "" }
-                        <h4>$500</h4> 
-                       
-                      </div>
-                        <h4>
-                          {box500 ? ((500 - 500 * 0.15) / 2) * box500 : "0.00"}{" "}
-                          USDT
-                        </h4>
-                      </div>
+                        <div className="card_menu">
+                          <div className="doller_circle">
+                            {lockDetails500 === true ? (
+                              <span className="unlocked_circle"></span>
+                            ) : (
+                              ""
+                            )}
+                            <h4>$500</h4>
+                          </div>
+                          <h4>
+                            {box500
+                              ? ((500 - 500 * 0.15) / 2) * box500
+                              : "0.00"}{" "}
+                            USDT
+                          </h4>
+                        </div>
 
-                      <div className="preview_card_sec">
-                        <div className="forsage_step">{blueElements500}</div>
+                        <div className="preview_card_sec">
+                          <div className="forsage_step">{blueElements500}</div>
 
-                        <div className="prievi_btn">
-                          <button >
-                            Preview{" "}
-                            <span>
-                              <img
-                                src={img28topicon}
-                                alt="img28topicon"
-                                className="img28topicon1"
-                              />
-                            </span>
-                          </button>
+                          <div className="prievi_btn">
+                            <button>
+                              Preview{" "}
+                              <span>
+                                <img
+                                  src={img28topicon}
+                                  alt="img28topicon"
+                                  className="img28topicon1"
+                                />
+                              </span>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link> :
-                  <Link>
-                    <div  className="forsage_card locked_box"
-                    // style={{
-                    //   backgroundImage: `url(${goldsedo})`,
-                    //   backgroundSize: "cover",
-                    // }}
-                    >
-                      {/* <div className='blue_color'>
+                    </Link>
+                  ) : (
+                    <Link>
+                      <div
+                        className="forsage_card locked_box"
+                        // style={{
+                        //   backgroundImage: `url(${goldsedo})`,
+                        //   backgroundSize: "cover",
+                        // }}
+                      >
+                        {/* <div className='blue_color'>
                       <img src={goldsedo} alt='blue_color' className='blue_color_img gold_blue' />
                     </div> */}
-                      <div className="card_menu">
-                      <div className="doller_circle">
-                      {lockDetails500 === true?  <span className="unlocked_circle"></span> : "" }
-                        <h4>$500</h4> 
-                       
-                      </div>
-                        <h4>
-                          {box500 ? ((500 - 500 * 0.15) / 2) * box500 : "0.00"}{" "}
-                          USDT
-                        </h4>
-                      </div>
+                        <div className="card_menu">
+                          <div className="doller_circle">
+                            {lockDetails500 === true ? (
+                              <span className="unlocked_circle"></span>
+                            ) : (
+                              ""
+                            )}
+                            <h4>$500</h4>
+                          </div>
+                          <h4>
+                            {box500
+                              ? ((500 - 500 * 0.15) / 2) * box500
+                              : "0.00"}{" "}
+                            USDT
+                          </h4>
+                        </div>
 
-                      <div className="preview_card_sec">
-                        <div className="forsage_step">{blueElements500}</div>
+                        <div className="preview_card_sec">
+                          <div className="forsage_step">{blueElements500}</div>
 
-                        <div className="prievi_btn">
-                          <button disabled>
-                            Locked{" "}
-                            <span>
-                              <img
-                                src={img28topicon}
-                                alt="img28topicon"
-                                className="img28topicon1"
-                              />
-                            </span>
-                          </button>
+                          <div className="prievi_btn">
+                            <button disabled>
+                              Locked{" "}
+                              <span>
+                                <img
+                                  src={img28topicon}
+                                  alt="img28topicon"
+                                  className="img28topicon1"
+                                />
+                              </span>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                }
+                    </Link>
+                  )}
                 </div>
 
                 {/* <div className='col-lg-6'>
@@ -1474,94 +1544,101 @@ const uploadProfile = async (event) => {
               </div> */}
 
                 <div className="col-lg-6">
-                {lockDetails1000 == true ? 
-                   
-                  <Link to="/Preview1000">
-                    <div
-                      className="forsage_card"
-                    // style={{
-                    //   backgroundImage: `url(${greensedo})`,
-                    //   backgroundSize: "cover",
-                    // }}
-                    >
-                      {/* <div className='blue_color'>
+                  {lockDetails1000 == true ? (
+                    <Link to="/Preview1000">
+                      <div
+                        className="forsage_card"
+                        // style={{
+                        //   backgroundImage: `url(${greensedo})`,
+                        //   backgroundSize: "cover",
+                        // }}
+                      >
+                        {/* <div className='blue_color'>
                       <img src={greensedo} alt='blue_color' className='blue_color_img ' />
                     </div> */}
-                      <div className="card_menu">
-                      <div className="doller_circle">
-                      {lockDetails1000 === true?  <span className="unlocked_circle"></span> : "" }
-                        <h4>$1000</h4> 
-                       
-                      </div>
-                        <h4>
-                          {box1000
-                            ? ((1000 - 1000 * 0.15) / 2) * box1000
-                            : "0.00"}{" "}
-                          USDT
-                        </h4>
-                      </div>
+                        <div className="card_menu">
+                          <div className="doller_circle">
+                            {lockDetails1000 === true ? (
+                              <span className="unlocked_circle"></span>
+                            ) : (
+                              ""
+                            )}
+                            <h4>$1000</h4>
+                          </div>
+                          <h4>
+                            {box1000
+                              ? ((1000 - 1000 * 0.15) / 2) * box1000
+                              : "0.00"}{" "}
+                            USDT
+                          </h4>
+                        </div>
 
-                      <div className="preview_card_sec">
-                        <div className="forsage_step">{blueElements1000}</div>
+                        <div className="preview_card_sec">
+                          <div className="forsage_step">{blueElements1000}</div>
 
-                        <div className="prievi_btn">
-                          <button>
-                            Preview{" "}
-                            <span>
-                              <img
-                                src={img28topicon}
-                                alt="img28topicon"
-                                className="img28topicon1"
-                              />
-                            </span>
-                          </button>
+                          <div className="prievi_btn">
+                            <button>
+                              Preview{" "}
+                              <span>
+                                <img
+                                  src={img28topicon}
+                                  alt="img28topicon"
+                                  className="img28topicon1"
+                                />
+                              </span>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link> : 
-                  <Link to="/Preview1000">
-                  <div  className="forsage_card locked_box"
-                    // style={{
-                    //   backgroundImage: `url(${greensedo})`,
-                    //   backgroundSize: "cover",
-                    // }}
-                    >
-                      {/* <div className='blue_color'>
+                    </Link>
+                  ) : (
+                    <Link to="/Preview1000">
+                      <div
+                        className="forsage_card locked_box"
+                        // style={{
+                        //   backgroundImage: `url(${greensedo})`,
+                        //   backgroundSize: "cover",
+                        // }}
+                      >
+                        {/* <div className='blue_color'>
                       <img src={greensedo} alt='blue_color' className='blue_color_img ' />
                     </div> */}
-                      <div className="card_menu">
-                      <div className="doller_circle">
-                      {lockDetails1000 === true?  <span className="unlocked_circle"></span> : "" }
-                        <h4>$1000</h4> 
-                       
-                      </div>
-                        <h4>
-                          {box1000
-                            ? ((1000 - 1000 * 0.15) / 2) * box1000
-                            : "0.00"}{" "}
-                          USDT
-                        </h4>
-                      </div>
+                        <div className="card_menu">
+                          <div className="doller_circle">
+                            {lockDetails1000 === true ? (
+                              <span className="unlocked_circle"></span>
+                            ) : (
+                              ""
+                            )}
+                            <h4>$1000</h4>
+                          </div>
+                          <h4>
+                            {box1000
+                              ? ((1000 - 1000 * 0.15) / 2) * box1000
+                              : "0.00"}{" "}
+                            USDT
+                          </h4>
+                        </div>
 
-                      <div className="preview_card_sec">
-                        <div className="forsage_step">{blueElements1000}</div>
+                        <div className="preview_card_sec">
+                          <div className="forsage_step">{blueElements1000}</div>
 
-                        <div className="prievi_btn">
-                          <button disabled>
-                            Locked{" "}
-                            <span>
-                              <img
-                                src={img28topicon}
-                                alt="img28topicon"
-                                className="img28topicon1"
-                              />
-                            </span>
-                          </button>
+                          <div className="prievi_btn">
+                            <button disabled>
+                              Locked{" "}
+                              <span>
+                                <img
+                                  src={img28topicon}
+                                  alt="img28topicon"
+                                  className="img28topicon1"
+                                />
+                              </span>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                }
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
