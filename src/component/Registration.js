@@ -533,9 +533,9 @@ const Registration = () => {
 
 
 
-  const { data: lockDetails50, isLoading: isLockLoading50 } =
-  useContractRead(contract, "getUnlockPlanDetails", [address, 50]);
-  console.log(lockDetails50)
+  const { data: lockDetails1, isLoading: isLockLoading1 } =
+  useContractRead(contract, "getUnlockPlanDetails", [address, 1]);
+  console.log(lockDetails1)
   const { data: lockDetails100, isLoading: isLockLoading100 } =
   useContractRead(contract, "getUnlockPlanDetails", [address, 100]);
   console.log(lockDetails100)
@@ -803,9 +803,9 @@ const Registration = () => {
                                 Select Your Plan
                               </option>
                               {/* <option value="0.1">0.1</option> */}
-                              {lockDetails50 == true ? 
-                                <option disabled value="50">50</option> :
-                                <option value="50">50</option>
+                              {lockDetails1 == true ? 
+                                <option disabled value="1">1</option> :
+                                <option value="1">1</option>
                                }
                                {lockDetails100 == true ? 
                                 <option disabled value="100">100</option> :
