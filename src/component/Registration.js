@@ -74,7 +74,7 @@ const Registration = () => {
     fetchedData();
   }, []);
 
-  const result2 = (selectedValue / price).toFixed(0);
+  const result2 = (1 / price).toFixed(0);
   const mjcstackamountValue = (mjcstackamount / price).toFixed(0);
   const newValue = (result2 * 0.15).toFixed(0);
   // const newValue = 5000
@@ -533,9 +533,9 @@ const Registration = () => {
 
 
 
-  const { data: lockDetails1, isLoading: isLockLoading1 } =
-  useContractRead(contract, "getUnlockPlanDetails", [address, 1]);
-  console.log(lockDetails1)
+  const { data: lockDetails50, isLoading: isLockLoading1 } =
+  useContractRead(contract, "getUnlockPlanDetails", [address, 50]);
+  console.log(lockDetails50)
   const { data: lockDetails100, isLoading: isLockLoading100 } =
   useContractRead(contract, "getUnlockPlanDetails", [address, 100]);
   console.log(lockDetails100)
@@ -803,25 +803,27 @@ const Registration = () => {
                                 Select Your Plan
                               </option>
                               {/* <option value="0.1">0.1</option> */}
-                              {lockDetails1 == true ? 
-                                <option disabled value="1">1</option> :
-                                <option value="1">1</option>
+
+                              {lockDetails50 == true ? 
+                                <option disabled value="50">50</option> :
+                                <option value="1">50</option>
                                }
+
                                {lockDetails100 == true ? 
                                 <option disabled value="100">100</option> :
-                                <option value="100">100</option>
+                                <option disabled value="100">100</option>
                                }
                                {lockDetails200 == true ? 
                                 <option disabled value="200">200</option> :
-                                <option value="200">200</option>
+                                <option disabled value="200">200</option>
                                }
                                {lockDetails500 == true ? 
                                 <option disabled value="500">500</option> :
-                                <option value="500">500</option>
+                                <option disabled value="500">500</option>
                                }
                                {lockDetails1000 == true ? 
                                 <option disabled value="1000">1000</option> :
-                                <option value="1000">1000</option>
+                                <option disabled value="1000">1000</option>
                                }
                             </select>
                           </div>
