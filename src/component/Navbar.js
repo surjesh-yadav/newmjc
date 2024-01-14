@@ -75,8 +75,9 @@ const Navbar = () => {
   return (
     <div>
       <div className="sidebar">
+        <a href="/">
         <img className="main_desktop_logo" src="/logo_main.svg" />
-
+        </a>
         <div className="sidebar_menu">
           <div className="said_icons">
             <div className="logo_pri">

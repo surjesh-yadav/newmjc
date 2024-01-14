@@ -149,7 +149,7 @@ const Registration = () => {
 
   const getMainUserId = async (address) => {
     try {
-      let dumy = await fetch("https://nodes.mjccoin.io/v1/allDetails", {
+      let dumy = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -428,7 +428,7 @@ const Registration = () => {
 
   const handleUserWallet = async () => {
     try {
-      let dumy = await fetch("https://nodes.mjccoin.io/v1/allDetails", {
+      let dumy = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
