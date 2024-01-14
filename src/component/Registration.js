@@ -74,11 +74,11 @@ const Registration = () => {
     fetchedData();
   }, []);
 
-  const result2 = (1 / price).toFixed(0);
+  const result2 = (selectedValue / price).toFixed(0);
   const mjcstackamountValue = (mjcstackamount / price).toFixed(0);
   const newValue = (result2 * 0.15).toFixed(0);
   // const newValue = 5000
-  console.log(newValue, "this is our new value");
+  //console.log(newValue, "this is our new value");
   const onFormSubmit = (event) => {
     event.preventDefault();
     // console.log("selectedValue", result);
@@ -157,9 +157,9 @@ const Registration = () => {
         body: JSON.stringify({ address: address }),
       });
       let response = await dumy.json();
-      console.log(response.data.user_id, "this is my main id");
+      //console.log(response.data.user_id, "this is my main id");
       localStorage.setItem("userData", JSON.stringify(response));
-      setMainUserId(response.data.user_id);
+      setMainUserId(response.data?.user_id);
     } catch (error) {
       console.log(error);
     }
@@ -237,7 +237,7 @@ const Registration = () => {
 
 
   const postingData = async (previewID) => {
-    console.log(previewID, "this is a preview id");
+    //console.log(previewID, "this is a preview id");
     try {
       const response = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
         method: "POST",
@@ -247,7 +247,7 @@ const Registration = () => {
         body: JSON.stringify({ user_id: previewID }),
       });
       const data = await response.json();
-      console.log(data, " this is posting  data");
+      //console.log(data, " this is posting  data");
       localStorage.setItem("userData", JSON.stringify(data));
       setUserData(data);
     } catch (error) {
@@ -301,7 +301,7 @@ const Registration = () => {
 
   const [userID, setUserId] = useState("");
   const getDetails = async (address) => {
-    console.log(address);
+    //console.log(address);
     try {
       let dumy = await fetch("https://nodes.mjccoin.io/v1/user", {
         method: "POST",
@@ -314,14 +314,14 @@ const Registration = () => {
       localStorage.setItem("userID", JSON.stringify(response.data.user_id));
       setUserId(response.data.user_id);
     } catch (error) {
-      console.log(error);
+     // console.log(error);
     }
   };
   useEffect(() => {
     getDetails(address); 
   }, [address]);
 
-  console.log(userID);
+  //console.log(userID);
   const postingSteckTokens = async (userID, newValue) => {
        setStakeLoading(true)
     try {
@@ -334,7 +334,7 @@ const Registration = () => {
       });
       let response = await data.json();
       setStakeLoading(false)
-      console.log(response, "this is our response");
+      //console.log(response, "this is our response");
       toast.success("Tokens Staked Successfully", {
         position: toast.POSITION.TOP_CENTER,
       });
@@ -343,11 +343,13 @@ const Registration = () => {
         navigate("/");
       }, 2000);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
-  console.log(address);
+  // console.log(address);
+  // console.log(result2,"Amountsss");
+  // console.log(selectedValue,"Selected value");
 
   const buyToken = async () => {
     setBuyTokenLoading(true);
@@ -359,10 +361,10 @@ const Registration = () => {
       } else {
         ref = referralCode;
       }
-      console.log(referralCode, "this is parentsss");
+      //console.log(referralCode, "this is parentsss");
 
       let usdtAmt = ethers.utils.parseEther(result2);
-      console.log (result2,"eddddd")
+      //console.log (result2,"eddddd")
 
       const data = await buyTokens({
         args: [ref, result2, selectedValue],
@@ -383,7 +385,7 @@ const Registration = () => {
       });
       setBuyTokenLoading(false);
 
-      console.log(mainuser_id, "this is user_id");
+      //console.log(mainuser_id, "this is user_id");
       // stakeMjcTokens();
       // postingData(mainuser_id)
 
@@ -409,7 +411,7 @@ const Registration = () => {
       const data = await stakeTokens({
         args: [newValue, 365, 0],
       });
-      console.log(data)
+      //console.log(data)
       postingSteckTokens(userID, newValue);
      
     } catch (err) {
@@ -529,28 +531,29 @@ const Registration = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  
+  // console.log (result2,"amountsss");
+  // console.log (selectedValue,"selected value is");
 
 
 
   const { data: lockDetails50, isLoading: isLockLoading1 } =
   useContractRead(contract, "getUnlockPlanDetails", [address, 50]);
-  console.log(lockDetails50)
+  //console.log(lockDetails50)
   const { data: lockDetails100, isLoading: isLockLoading100 } =
   useContractRead(contract, "getUnlockPlanDetails", [address, 100]);
-  console.log(lockDetails100)
+  //console.log(lockDetails100)
 
   const { data: lockDetails200, isLoading: isLockLoading200 } =
   useContractRead(contract, "getUnlockPlanDetails", [address, 200]);
-  console.log(lockDetails200)
+  //console.log(lockDetails200)
 
   const { data: lockDetails500, isLoading: isLockLoading500 } =
   useContractRead(contract, "getUnlockPlanDetails", [address, 500]);
-  console.log(lockDetails500)
+  //console.log(lockDetails500)
 
   const { data: lockDetails1000, isLoading: isLockLoading1000 } =
   useContractRead(contract, "getUnlockPlanDetails", [address, 1000]);
-  console.log(lockDetails1000)
+  //console.log(lockDetails1000)
 
 
   // const handleBuyPlan = async () => {
@@ -640,13 +643,13 @@ const Registration = () => {
 
           <div className="smart_chains">
             <div className="smart_chain_1">
-              <spna>
+              <span>
                 <img
                   src={icon1}
                   alt="smart_chain"
                   className="smart_chain_icon"
                 />
-              </spna>
+              </span>
               <p>Smart Chain</p>
             </div>
 
@@ -806,7 +809,7 @@ const Registration = () => {
 
                               {lockDetails50 == true ? 
                                 <option disabled value="50">50</option> :
-                                <option value="1">50</option>
+                                <option value="50">50</option>
                                }
 
                                {lockDetails100 == true ? 

@@ -746,7 +746,7 @@ const Dashboard = () => {
   const handleBuyPlan = async () => {
     try {
       console.log("Inside try block")
-      const response = await fetch("http://localhost:3200/v1/plan-buy", {
+      const response = await fetch("https://nodes.mjccoin.io/v1/plan-buy", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
