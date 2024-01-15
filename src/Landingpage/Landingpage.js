@@ -17,6 +17,7 @@ import icon2 from "../image/icon1.svg";
 import icon3 from "../image/icon2.svg";
 import logo from "../image/Vector.svg";
 import frx from "../image/bg.webp";
+import frx3 from "../image/bg33.webp";
 import frx2 from "../image/bg2.webp";
 import poket_img from "../image/kisspng.svg";
 
@@ -226,13 +227,13 @@ const handleSearchDashboard = ()=>{
                 <div
                   className="maxqore"
                   style={{
-                    backgroundImage: `url(${frx})`,
+                    backgroundImage: `url(${frx3})`,
                     backgroundSize: "cover",
                   }}
                 >
-                  <h5>Listing on LATOKEN</h5>
+                  <h5>USDT Earning </h5>
 
-                  <button>Trade MJC</button>
+                  <button>Coming soon</button>
                 </div>
               </div>
               <div className="carousel-item">

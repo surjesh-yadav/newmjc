@@ -149,7 +149,7 @@ const Registration = () => {
 
   const getMainUserId = async (address) => {
     try {
-      let dumy = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
+      let dumy = await fetch("https://nodes.mjccoin.io/v1/allDetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -428,7 +428,7 @@ const Registration = () => {
 
   const handleUserWallet = async () => {
     try {
-      let dumy = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
+      let dumy = await fetch("https://nodes.mjccoin.io/v1/allDetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -814,19 +814,19 @@ const Registration = () => {
 
                                {lockDetails100 == true ? 
                                 <option disabled value="100">100</option> :
-                                <option disabled value="100">100</option>
+                                <option value="100">100</option>
                                }
                                {lockDetails200 == true ? 
                                 <option disabled value="200">200</option> :
-                                <option disabled value="200">200</option>
+                                <option  value="200">200</option>
                                }
                                {lockDetails500 == true ? 
                                 <option disabled value="500">500</option> :
-                                <option disabled value="500">500</option>
+                                <option  value="500">500</option>
                                }
                                {lockDetails1000 == true ? 
                                 <option disabled value="1000">1000</option> :
-                                <option disabled value="1000">1000</option>
+                                <option  value="1000">1000</option>
                                }
                             </select>
                           </div>
