@@ -7,6 +7,13 @@ import React, { useState, useEffect, useRef } from "react";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
 import { Bars } from "react-loader-spinner";
+import {Button} from '@nextui-org/react';
+import confetti from 'canvas-confetti';
+
+import {
+  stakecontract,
+  stake_abi,
+}from "./contract.js";
 import {
   useTokenBalance,
   useContract,
@@ -19,6 +26,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Registration = () => {
+  
+  const handleConfetti = () => {
+    confetti({   });
+  };
+
   const [stackPrice, setStackPrice] = useState("");
   const [mjcstackamount, setMjcStackAmount] = useState("");
   const [mjcStackDuration, setMjcStackDuration] = useState("");
@@ -103,6 +115,7 @@ const Registration = () => {
   const [mainuser_id, setMainUserId] = useState();
   const isValidUSDTamount = Number(USDTAmt) >= 20 || USDTAmt == "";
 
+
   useEffect(() => {
     const fetchedbtcprice = async () => {
       try {
@@ -169,12 +182,12 @@ const Registration = () => {
  
 
   const { contract } = useContract(
-    "0xc1931Dc38541A982da5470f10Bf5C3Ed51F40490"
+    "0xc81f6530Ec56C226817Bfa297B9B0cc7DFCD7dD1"
   );
   const { data: cunWalletBal, isLoading: isCunWalletBalLoading } =
     useTokenBalance(contract, address);
   const { contract: USDTContract } = useContract(
-    "0x9f2C886E49b6851f8488F8818DDBADFd16B13e7a"
+    "0x0ECBBF0D46E13cC4fffdf14AbC39D8332c89Ad8b"
   );
   const { data: walletBal, isLoading: walletBalLoading } = useTokenBalance(
     USDTContract,
@@ -214,7 +227,7 @@ const Registration = () => {
   const approveTokens = async () => {
     setApproveTokensLoading(true);
     try {
-      let spender = "0xc1931Dc38541A982da5470f10Bf5C3Ed51F40490"; //contract address
+      let spender = "0xc81f6530Ec56C226817Bfa297B9B0cc7DFCD7dD1"; //contract address
       let approveAmount = ethers.utils.parseEther(spending);
       const data = await approve({ args: [spender, approveAmount] });
       console.info("contract call successs", data);
@@ -338,7 +351,7 @@ const Registration = () => {
       toast.success("Tokens Staked Successfully", {
         position: toast.POSITION.TOP_CENTER,
       });
-      setIsModalOpen(false);
+      // setIsModalOpen(false);
       setTimeout(() => {
         navigate("/");
       }, 2000);
@@ -349,60 +362,95 @@ const Registration = () => {
 
   // console.log(address);
   // console.log(result2,"Amountsss");
-  // console.log(selectedValue,"Selected value");
+  // console.log(selectedValue,"Selected value"); 
 
-  const buyToken = async () => {
+
+  const handleBuyPlan = async () => {
+    console.log(address)
+    console.log(referralCode)
+
+    console.log("Run")
+    try {
+      console.log("Inside try block")
+      const response = await fetch("http://localhost:3200/v1/plan-buy", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_wallet: address.toLowerCase(),
+          parent_wallet_id: referralCode.toLowerCase(),
+          buyed_plan:[{amount:selectedValue}],
+          user_id: userID,
+        }),
+      });
+      const data = await response.json();
+
+      toast.success("Tokens Bought Successfully", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    }
+  };
+
+
+
+const rate = "100";
+  const buyToken = async (handleBuyPlan) => {
     setBuyTokenLoading(true);
     try {
-      // handleBuyPlan()
       let ref;
       if (parent === "0x0000000000000000000000000000000000000000") {
         ref = referralCode;
       } else {
         ref = referralCode;
       }
-      //console.log(referralCode, "this is parentsss");
-
-      let usdtAmt = ethers.utils.parseEther(result2);
-      //console.log (result2,"eddddd")
-
-      const data = await buyTokens({
-        args: [ref, result2, selectedValue],
-      });
-      console.info("contract call successs", data);
+      let tierplan = ethers.utils.parseEther(selectedValue);
+      let stakesamount = ethers.utils.parseEther(rate);
       
-      await fetch("https://nodes.mjccoin.io/v1/plan-buy", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_wallet: address,
-          buyed_plan: [{ amount: selectedValue }],
-          parent_wallet_id: ref,
-          user_id: userID,
-        }),
-      });
-      setBuyTokenLoading(false);
+        try {
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = provider.getSigner();
+          const contract = new ethers.Contract(
+           stakecontract,
+           stake_abi,
+           signer,
+          );
+          console.log(contract);
+          const token = await contract.buyTokens(ref, tierplan.toString(),stakesamount.toString(), { gasLimit: 3000000,value :ethers.utils.parseEther("0.0003") });
+          console.log(token);
+          const receipt = await token.wait();
 
-      //console.log(mainuser_id, "this is user_id");
-      // stakeMjcTokens();
-      // postingData(mainuser_id)
+        console.log(receipt)
+         console.log(receipt.status)
 
-      toast.success("Tokens Bought Successfully", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      setIsModalOpen(true);
-    } catch (err) {
-      toast.error("You can not buy more than $1000 in one transaction", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      console.error("contract call failure", err);
-    } finally {
-      setUSDTAmt("");
-      setBuyTokenLoading(false);
-    }
-  };
+           if (receipt.status === 1) {
+            handleBuyPlan()  
+            handleConfetti() 
+            } 
+
+            } catch (error) {
+              toast.error("Failed", {
+                position: toast.POSITION.TOP_CENTER,
+              });
+            }
+        setBuyTokenLoading(false);
+        } catch (err) {
+          toast.error("You can not buy more than $1000 in one transaction", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+          console.error("contract call failure", err);
+        } finally {
+          setUSDTAmt("");
+          setBuyTokenLoading(false);
+        }
+      };
+
+
+
+  
 
   const stakeMjcTokens = async () => {
     setStakeLoading(true);
@@ -534,8 +582,6 @@ const Registration = () => {
   // console.log (result2,"amountsss");
   // console.log (selectedValue,"selected value is");
 
-
-
   const { data: lockDetails50, isLoading: isLockLoading1 } =
   useContractRead(contract, "getUnlockPlanDetails", [address, 50]);
   //console.log(lockDetails50)
@@ -556,35 +602,11 @@ const Registration = () => {
   //console.log(lockDetails1000)
 
 
-  // const handleBuyPlan = async () => {
-  //   try {
-  //     console.log("Inside try block")
-  //     const response = await fetch("http://localhost:3200/v1/plan-buy", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         user_wallet: address.toLowerCase(),
-  //         parent_wallet_id: parent.toLowerCase(),
-  //         buyed_plan:[{amount:"0"}],
-  //         user_id: userID,
-  //       }),
-  //     });
-  //     const data = await response.json();
-  //     // localStorage.setItem("userData", JSON.stringify(data));
-  //     // setUserData(data);
-  //     // setUserID(data.data?.user_id)
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error("Error fetching user details:", error);
-  //   }
-  // };
-
+ 
 
   return (
     <div className="regi_main">
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <div className="popupmainbuy">
           <div class="modal-content">
             <div class="modal-header">
@@ -627,7 +649,7 @@ const Registration = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
       <div style={{ zIndex: 99999999 }}>
         <ToastContainer />
       </div>
@@ -664,7 +686,6 @@ const Registration = () => {
         {BuyTokenLoading && <Loading />}
         {directStakeJoiningLoading && <Loading />}
         {StakeLoading && <Loading />}
-
         <div className="registion_from">
           <div className="row">
             <div className="col-lg-6">
@@ -830,15 +851,15 @@ const Registration = () => {
                                }
                             </select>
                           </div>
-                          <p>You must have {result2} MJC Tokens</p>
-                          <button
-                            onClick={()=>{buyToken()}}
+                          {/* <p>You must have {result2} MJC Tokens</p> */}
+                          <Button
+                            onClick={()=>{buyToken(handleBuyPlan)}}
                             type="submit"
                             className="buy_button_MJC"
                           >
                             {" "}
                             Purchase tokens
-                          </button>
+                          </Button>
                         </form>
                       </div>
                     </div>

@@ -158,7 +158,7 @@ const Dashboard = () => {
   //read functions
   const address = useAddress();
   const { contract } = useContract(
-    "0xc1931Dc38541A982da5470f10Bf5C3Ed51F40490"
+    "0xc81f6530Ec56C226817Bfa297B9B0cc7DFCD7dD1"
   );
   // const { data: cunWalletBal, isLoading: isCunWalletBalLoading } =
   //   useTokenBalance(contract, address);
@@ -197,7 +197,7 @@ const Dashboard = () => {
     }
   };
   const { contract: USDTContract } = useContract(
-    "0x9f2C886E49b6851f8488F8818DDBADFd16B13e7a"
+    "0x0ECBBF0D46E13cC4fffdf14AbC39D8332c89Ad8b"
   );
   const { data: walletBal, isLoading: walletBalLoading } = useTokenBalance(
     USDTContract,
