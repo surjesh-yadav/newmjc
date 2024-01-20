@@ -375,7 +375,7 @@ const Registration = () => {
         body: JSON.stringify({
           user_wallet: address.toLowerCase(),
           parent_wallet_id: referralCode.toLowerCase(),
-          buyed_plan:[{amount:selectedValue}],
+          buyed_plan:[{amount: selectedValue - (selectedValue*0.15)}],
           user_id: userID,
         }),
       });
@@ -578,22 +578,22 @@ const rate = "100";
   // console.log (selectedValue,"selected value is");
 
   const { data: lockDetails50, isLoading: isLockLoading1 } =
-  useContractRead(contract, "getUnlockPlanDetails", [address, 50]);
+  useContractRead(contract, "getUnlockPlanDetails", [address, ethers.utils.parseEther("50")]);
   //console.log(lockDetails50)
   const { data: lockDetails100, isLoading: isLockLoading100 } =
-  useContractRead(contract, "getUnlockPlanDetails", [address, 100]);
+  useContractRead(contract, "getUnlockPlanDetails", [address, ethers.utils.parseEther("100")]);
   //console.log(lockDetails100)
 
   const { data: lockDetails200, isLoading: isLockLoading200 } =
-  useContractRead(contract, "getUnlockPlanDetails", [address, 200]);
+  useContractRead(contract, "getUnlockPlanDetails", [address, ethers.utils.parseEther("200")]);
   //console.log(lockDetails200)
 
   const { data: lockDetails500, isLoading: isLockLoading500 } =
-  useContractRead(contract, "getUnlockPlanDetails", [address, 500]);
+  useContractRead(contract, "getUnlockPlanDetails", [address, ethers.utils.parseEther("500")]);
   //console.log(lockDetails500)
 
   const { data: lockDetails1000, isLoading: isLockLoading1000 } =
-  useContractRead(contract, "getUnlockPlanDetails", [address, 1000]);
+  useContractRead(contract, "getUnlockPlanDetails", [address, ethers.utils.parseEther("1000")]);
   //console.log(lockDetails1000)
 
 
@@ -697,7 +697,7 @@ const rate = "100";
                     value={referralCode}
                     onChange={handleReferralChange}
                   />
-                  <div className="wllet_condition">
+                  {/* <div className="wllet_condition">
                     <p>
                       <button onClick={() => handleTabClick("home")}>
                         <span className="check_icon">
@@ -756,7 +756,7 @@ const rate = "100";
                         </span>
                       </button>
                     </p>
-                  </div>
+                  </div> */}
 
                   <div className="chech_agin_btn">
                     <button onClick={() => handleUserWallet()}>

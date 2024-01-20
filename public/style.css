@@ -1169,8 +1169,9 @@ img.greenBg2 {
   border-radius: 20px;
   padding: 0px;
   color: gray;
-  max-height: 400px;
-  overflow-y: scroll;
+  /* max-height: 400px; */
+ 
+  padding-bottom: 5px;
   margin-bottom: 70px;
 }
 
@@ -1218,7 +1219,7 @@ tbody tr {
 
 .table {
   width: 100%;
-  margin-bottom: 1rem;
+   margin-bottom: 0px !important;
   color: white !important;
   font-family: 'Plus Jakarta Sans' !important;
 }
@@ -1231,15 +1232,22 @@ tbody tr {
   padding-bottom: 17px !important;
 }
 
-.table td,
+/* .table td,
 .table th {
   padding: 20px 12px 7px 23px !important;
   vertical-align: top;
   border-top: none !important;
   font-weight: 400 !important;
   font-size: 15px;
-}
+} */
 
+.table td, .table th {
+  padding: 18px 18px 17px 20px !important;
+  vertical-align: top;
+  border-top: none !important;
+  font-weight: 400 !important;
+  font-size: 15px;
+}
 
 a.link_table2:hover {
   --tw-text-opacity: 1 !important;
@@ -1694,7 +1702,7 @@ th {
 
   .registion_from {
     margin-top: 89px;
-    padding: 0 18px;
+    /* padding: 0 18px; */
   }
 
   .regis_left h2 {
@@ -1770,8 +1778,8 @@ th {
 
   .regis_right {
     background: #0e0f10;
-    padding: 37px 20px;
-    border-radius: 20px;
+    padding: 37px 2px;
+    border-radius: 10px;
     /* z-index: 9999; */
     position: relative;
   }
@@ -2405,4 +2413,9 @@ span.inactive {
   margin-top: 12px;
   width: 100%;
   background: linear-gradient(180deg,#00e1b7,rgb(62 126 112 / 50%));
+}
+
+
+.table {
+  margin-bottom: 0px !important;
 }

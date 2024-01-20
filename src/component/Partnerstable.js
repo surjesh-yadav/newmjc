@@ -87,7 +87,6 @@ const Partnerstable = () => {
 
   };
     
-  
   return (
     <React.Fragment>
       <div className="container">

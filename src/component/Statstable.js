@@ -53,10 +53,12 @@ const Statstable = () => {
         });
         const data = await response.json();
         setUserData(data);
+        console.log(data)
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
     };
+
   
     const handleSearch = () => {
       fetchData();
@@ -76,11 +78,8 @@ const Statstable = () => {
     menuDropdown2.style.display = menuDropdown2.style.display === 'none' ? 'block' : 'none';
 
 };
-   
-    
-     
- 
   
+
   return (
     <React.Fragment>
       <div className="container">
@@ -125,10 +124,10 @@ const Statstable = () => {
               <table className="table">
                 <thead>
                   <tr>
-                   <th> </th>
+                   <th>Type</th>
                     <th>Amount</th>
+                    <th>User ID</th>
                     <th>Level</th>
-                    <th>User Id</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -141,15 +140,15 @@ const Statstable = () => {
                             <img src="/tick.svg"/>
                             </span>
                           </td>
-                          <td>{item.amount}</td>
+                          <td>{item.amount.toFixed(2)} USDT</td>
                           <td>
                             <Link className="link_table link_table2">
-                             {item.level}
+                             {item.user_id}
                             </Link>
                           </td>
  
                           <td>
-                            {(item.user_id)}
+                            {(item.level)}
                           </td>
                         </tr>
                       );
