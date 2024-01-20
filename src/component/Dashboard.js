@@ -512,7 +512,7 @@ const Dashboard = () => {
         link: userProfile,
       };
       // //console.log(formData);
-      const response = await fetch("http://localhost:3200/profile/upload", {
+      const response = await fetch("https://nodes.mjccoin.io/profile/upload", {
         method: "POST",
         body: formData,
       });

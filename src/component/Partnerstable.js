@@ -10,7 +10,7 @@ import {
 const Partnerstable = () => {
     const [tableData, setTableData] = useState("");
     const fetchData2 = () => {
-      const apiUrl = `https://nodes.mjccoin.io/v1/profits?address=${wallet_address}`;
+      const apiUrl = `https://ccoin.io/v1/profits?address=${wallet_address}`;
       fetch(apiUrl)
         .then((response) => {
           if (!response.ok) {
