@@ -7,6 +7,8 @@ import Navbar from "../component/Navbar";
 import img1 from "../image/Vector.svg";
 import PriviewId from "../component/PriviewId";
 import "./style.css";
+import { ethers } from "ethers";
+
 import { Link } from "react-router-dom";
 import {
   ConnectWallet,
@@ -94,7 +96,7 @@ useEffect(()=>{
 
   const numberOfElements = 10; // Change this to the desired number of elements
   const { data: getThePlansCount, isLoading: isPlanCountLoading } =
-    useContractRead(contract, "getThePlanCount", [wallet_address, 500]);
+    useContractRead(contract, "getThePlanCount", [wallet_address, ethers.utils.parseEther("500")]);
 
   const result500 = getThePlansCount;
   
@@ -157,7 +159,7 @@ useEffect(()=>{
             </div> */}
               <div className="level_title">
                 <h4></h4>
-                <h1>$5000 Plan</h1>
+                <h1>$500 Plan</h1>
                 <h4></h4>
               </div>
               <div className="levels_card_chain">
@@ -208,8 +210,8 @@ useEffect(()=>{
                          <>
                         <tr key={index}>
                           <td>
-                            <span className="users_icon">
-                              <i className="fa fa-user" aria-hidden="true"></i>
+                            <span className="">
+                            <img src="/tick.svg"/>
                             </span>
                           </td>
                           <td>{item.createdAt}</td>

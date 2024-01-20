@@ -33,7 +33,8 @@ body {
 
 /* Handle */
 .sidebar::-webkit-scrollbar-thumb {
-  background: #242526;
+  background: #0e0f10;
+;
   border-radius: 10px;
 }
 
@@ -186,7 +187,7 @@ span.message_icon {
 
 
 .regis_right {
-  background: #2425262b;
+  background: #0e0f10;
   border: 1px solid #00e1b7;
   padding: 45px 53px;
   border-radius: 20px;
@@ -298,7 +299,7 @@ img.img21copy {
   margin: 0;
   padding: 0;
   width: 240px;
-  background-color: #18191A;
+  background-color: #0b0c0c;
   position: fixed;
   height: 100%;
   z-index: 1;
@@ -307,7 +308,8 @@ img.img21copy {
 
 span.id_bg {
   font-size: 14px;
-  background: #242526;
+  background: #0e0f10;
+;
   padding: 7px 12px;
   border-radius: 20px;
   --tw-text-opacity: 1;
@@ -375,7 +377,8 @@ img.logoimg_priview {
 }
 
 .dropdown.visible2 {
-  background-color: #242526;
+  background-color: #0e0f10;
+;
   border-radius: 10px;
 }
 
@@ -427,7 +430,8 @@ i.fa.fa-user-circle-o {
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
-  border: 32px solid #242526;
+  border: 32px solid #0e0f10;
+;
   border-radius: 50%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -808,7 +812,8 @@ img.blue_color_img.greensedo2 {
 .seemore {
   width: 100%;
   display: inline-block;
-  background-color: #242526;
+  background-color: #0e0f10;
+;
   border-radius: 10px;
   padding: 20px;
 }
@@ -828,7 +833,8 @@ img.blue_color_img.greensedo2 {
 }
 
 .menber_totla_title {
-  background: #242526;
+  background: #0e0f10;
+;
   padding: 13px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -867,7 +873,8 @@ img.blue_color_img.greensedo2 {
 }
 
 .link_section_all {
-  background: #242526;
+  background: #0e0f10;
+;
   display: inline-block;
   width: 100%;
   border-radius: 10px;
@@ -1003,7 +1010,7 @@ a#tems {
   position: fixed;
   top: 11px;
   z-index: 2;
-  background-color: #242526f7;
+  background-color: #0e0f10;
   color: white;
   width: 77.5%;
   right: 32px;
@@ -1156,7 +1163,8 @@ img.greenBg2 {
 }
 
 .tabls {
-  background: #242526;
+  background: #0e0f10;
+;
   margin-top: 80px;
   border-radius: 20px;
   padding: 0px;
@@ -1220,6 +1228,7 @@ tbody tr {
   border-bottom: 0 !important;
   color: gray !important;
   border-color: hsla(0, 0%, 100%, .1);
+  padding-bottom: 17px !important;
 }
 
 .table td,
@@ -1546,7 +1555,8 @@ th {
   }
 
   button.bars {
-    background: #242526;
+    background: #0e0f10;
+;
     border: none;
     color: white;
     font-size: 25px;
@@ -1575,7 +1585,8 @@ th {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: #242526;
+    background-color: #0e0f10;
+;
     padding: 12px;
   }
 
@@ -1739,7 +1750,8 @@ th {
   }
 
   i.fa.fa-user-circle-o {
-    border: 22px solid #242526;
+    border: 22px solid #0e0f10;
+;
   }
 
   .wllet_condition p {
@@ -1757,7 +1769,7 @@ th {
   }
 
   .regis_right {
-    background: #2425262b;
+    background: #0e0f10;
     padding: 37px 20px;
     border-radius: 20px;
     /* z-index: 9999; */
@@ -1858,7 +1870,8 @@ th {
 
   span.id_bg {
     font-size: 14px;
-    background: #242526;
+    background: #0e0f10;
+;
     padding: 8px 53px;
     border-radius: 20px;
     --tw-text-opacity: 1;
@@ -2203,6 +2216,9 @@ input::-webkit-inner-spin-button {
   }
 
   .mobile_search_field{
+    display: none !important;
+  }
+  .mobile_search_field_link{
     display: none !important;
   }
 

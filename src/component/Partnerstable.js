@@ -146,8 +146,8 @@ const Partnerstable = () => {
                       return (
                         <tr key={index}>
                           <td>
-                            <span className="users_icon">
-                              <i className="fa fa-user" aria-hidden="true"></i>
+                            <span className="">
+                              <img src="/tick.svg"/>
                             </span>
                           </td>
                           <td>{new Date(item.time).toISOString().split('T')[0]}</td>

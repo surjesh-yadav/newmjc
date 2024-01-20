@@ -143,7 +143,7 @@ const Navbar = () => {
               </span>
               Buy Tokens
             </Link>
-            <Link>
+            <Link className="mobile_search_field_link">
               <div className="input_btn mobile_search_field">
                 <input
                   value={previewID}

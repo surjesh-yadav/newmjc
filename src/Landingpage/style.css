@@ -17,7 +17,8 @@
 
 .register_in {
     display: flex;
-    background: #242526;
+    background: #0e0f10;
+;
     color: white;
     border-radius: 20px;
     margin-top: 118px;
@@ -160,7 +161,8 @@ img.poket_img {
 }
 
 .wall_left {
-    background: #242526;
+    background: #0e0f10;
+;
     padding: 31px;
     border-radius: 20px;
     width: 67%;
@@ -188,7 +190,8 @@ input.account_input {
 }
 
 .wall_right {
-    background: #242526;
+    background: #0e0f10;
+;
     border-radius: 20px;
     padding: 30px;
     width: 30%;
@@ -253,7 +256,8 @@ img.roadmaping {
     content: "";
     width: 377px;
     height: 3px;
-    background: #242526;
+    background: #0e0f10;
+;
     bottom: -55px;
 }
 
@@ -262,7 +266,8 @@ img.roadmaping {
     content: "";
     position: absolute;
     width: 122px;
-    background: #242526;
+    background: #0e0f10;
+;
     left: 0;
 }
 
@@ -275,7 +280,8 @@ img.roadmaping {
     content: "";
     position: absolute;
     width: 3px;
-    background: #242526;
+    background: #0e0f10;
+;
     left: -188px;
     height: 217px;
     top: -82px;
@@ -287,7 +293,8 @@ img.roadmaping {
     content: "";
     position: absolute;
     width: 3px;
-    background: #242526;
+    background: #0e0f10;
+;
     left: -188px;
     height: 248px;
     top: -82px;
@@ -310,7 +317,8 @@ img.roadmaping {
 
 img.rickiconq {
     width: 32px;
-    background: #242526;
+    background: #0e0f10;
+;
     border-radius: 50px;
     padding: 4px;
 }
@@ -320,7 +328,8 @@ img.rickiconq {
     content: "";
     width: 3px;
     height: 270px;
-    background: #242526;
+    background: #0e0f10;
+;
     right: -190px;
     top: -82px;
     border-left: 0px solid #746d6d00;
@@ -329,7 +338,8 @@ img.rickiconq {
 }
 
 span.circle_line {
-    background: #242526;
+    background: #0e0f10;
+;
     width: 16px;
     height: 16px;
     display: inline-block;
@@ -541,7 +551,8 @@ img.smart_chain_icon {
 
     .register_in {
         display: flex;
-        background: #242526;
+        background: #0e0f10;
+;
         color: white;
         border-radius: 20px;
         margin-top: 118px;
@@ -593,7 +604,8 @@ img.smart_chain_icon {
         content: "";
         width: 3px;
         height: 239px;
-        background: #242526;
+        background: #0e0f10;
+;
         right: -281px;
         top: -166px;
         border-left: 0px solid #746d6d00;
@@ -607,7 +619,8 @@ img.smart_chain_icon {
         content: "";
         width: 3px;
         height: 265px;
-        background: #242526;
+        background: #0e0f10;
+;
         right: -281px;
         top: -192px;
         border-left: 0px solid #746d6d00;
@@ -626,7 +639,8 @@ img.smart_chain_icon {
         content: "";
         position: absolute;
         width: 3px;
-        background: #242526;
+        background: #0e0f10;
+;
         left: -281px;
         height: 269px;
         top: -78px;
@@ -637,7 +651,8 @@ img.smart_chain_icon {
         content: "";
         position: absolute;
         width: 3px;
-        background: #242526;
+        background: #0e0f10;
+;
         left: -281px;
         height: 269px;
         top: -78px;
@@ -864,4 +879,9 @@ img.smart_chain_icon {
     font-size: 14px;
     color: white;
     font-weight: 400;
+  }
+
+
+  table thead th{
+   padding-top: 14px !important
   }

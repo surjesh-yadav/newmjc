@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { Bars } from "react-loader-spinner";
 import {Button} from '@nextui-org/react';
 import confetti from 'canvas-confetti';
-
 import {
   stakecontract,
   stake_abi,
@@ -26,7 +25,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Registration = () => {
-  
+  const navigate = useNavigate();
   const handleConfetti = () => {
     confetti({   });
   };
@@ -39,7 +38,7 @@ const Registration = () => {
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
   };
-  let navigate = useNavigate();
+  
   //   const [referralCode, setReferralCode] = useState("");
   const [spending, setSpending] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
@@ -366,10 +365,6 @@ const Registration = () => {
 
 
   const handleBuyPlan = async () => {
-    console.log(address)
-    console.log(referralCode)
-
-    console.log("Run")
     try {
       console.log("Inside try block")
       const response = await fetch("http://localhost:3200/v1/plan-buy", {
@@ -385,11 +380,11 @@ const Registration = () => {
         }),
       });
       const data = await response.json();
-
       toast.success("Tokens Bought Successfully", {
         position: toast.POSITION.TOP_CENTER,
       });
 
+      navigate('/dashboard');
     } catch (error) {
       console.error("Error fetching user details:", error);
     }
@@ -436,7 +431,10 @@ const rate = "100";
                 position: toast.POSITION.TOP_CENTER,
               });
             }
-        setBuyTokenLoading(false);
+         setBuyTokenLoading(false);
+          
+        
+
         } catch (err) {
           toast.error("You can not buy more than $1000 in one transaction", {
             position: toast.POSITION.TOP_CENTER,
@@ -448,9 +446,6 @@ const rate = "100";
         }
       };
 
-
-
-  
 
   const stakeMjcTokens = async () => {
     setStakeLoading(true);

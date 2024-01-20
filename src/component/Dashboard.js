@@ -77,7 +77,7 @@ const Dashboard = () => {
         );
         setPrice(response.data.data.last);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     fetchedData();
@@ -130,7 +130,7 @@ const Dashboard = () => {
       //   const result = await response.json();
       //   setBTCPrice(result.bitcoin.usd);
       // } catch (error) {
-      //   console.log(error);
+      //   //console.log(error);
       // }
     };
     fetchedbtcprice();
@@ -149,7 +149,7 @@ const Dashboard = () => {
         const result = await response.json();
         setBNBPrice(result.binancecoin.usd);
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     };
     fetchedbnbprice();
@@ -160,9 +160,10 @@ const Dashboard = () => {
   const { contract } = useContract(
     "0xc81f6530Ec56C226817Bfa297B9B0cc7DFCD7dD1"
   );
-  // const { data: cunWalletBal, isLoading: isCunWalletBalLoading } =
+  // const { data: stakeBalance, isLoading: isCunWalletBalLoading } =
   //   useTokenBalance(contract, address);
-  //console.log(!address)
+  // //console.log(!address)
+
   useEffect(() => {
     if (address) {
       getDetails(address);
@@ -170,7 +171,7 @@ const Dashboard = () => {
   }, [address]);
 
   const getDetails = async (Address) => {
-    //console.log(Address.toLowerCase())
+    ////console.log(Address.toLowerCase())
 
     try {
       let dumy = await fetch("https://nodes.mjccoin.io/v1/user", {
@@ -191,9 +192,9 @@ const Dashboard = () => {
         setUserRes({ ...response.data });
       }
 
-      //console.log(response.data)
+      ////console.log(response.data)
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
   const { contract: USDTContract } = useContract(
@@ -203,74 +204,23 @@ const Dashboard = () => {
     USDTContract,
     address
   );
-  // const { data: rewardAmt, isLoading: isRewardAmtLoading } = useContractRead(
-  //   contract,
-  //   "RewardAmount",
-  //   [address]
-  // );
-  //console.log(userRes);
-  // const { data: parent, isLoading: isParentLoading } = useContractRead(
-  //   contract,
-  //   "getParent",
-  //   [address]
-  // );
-
-  // const { data: availableRewards, isLoading: isAvailableRewardsLoading } =
-  //   useContractRead(contract, "getAvailableRewards", [address]);
-  // const { data: rewardLimit, isLoading: isRewardLimitLoading } =
-  //   useContractRead(contract, "getRewardLimit", [address]);
-  // const { data: totalWithdrawn, isLoading: istotalWithdrawnLoading } =
-  //   useContractRead(contract, "totalWithdrawn", [address]);
-  // const { data: tokenPrice, isLoading: isTokenPriceLoading } = useContractRead(
-  //   contract,
-  //   "TokenPrice",
-  //   []
-  // );
-  // const { data: owner, isLoading: isOwnerLoading } = useContractRead(
-  //   contract,
-  //   "Owner",
-  //   []
-  // );
-  // const { data: totalInvested, isLoading: istotalInvestedLoading } =
-  //   useContractRead(contract, "totalInvested", [address]);
+   
+  
   const { data: directChild, isLoading: isDirectChildLoading } =
     useContractRead(contract, "showAllDirectChild", [wallet_address]);
 
-  const { data: parent, isLoading: isParentLoading } = useContractRead(
+  const { data: Parent, isLoading: isParentLoading } = useContractRead(
     contract,
-    "getParent",
+    "Parent",
     [wallet_address]
   );
-
 
   const { data: indirectChild, isLoading: isIndirectChildLoading } =
     useContractRead(contract, "showAllInDirectChild", [wallet_address]);
 
-  const { data: stakeBalance, isLoading: isStakeBalanceLoading } =
-    useContractRead(contract, "totalStaked");
-
-  // const { data: userLevels, isLoading: isUserLevelsLoading } = useContractRead(
-  //   contract,
-  //   "userLevels",
-  //   [address]
-  // );
-  // const { data: sellLimit, isLoading: isSellLimitlsLoading } = useContractRead(
-  //   contract,
-  //   "getSellingLimit",
-  //   [address]
-  // );
-  // const { data: soldLimit, isLoading: isSoldLimitlsLoading } = useContractRead(
-  //   contract,
-  //   "totalAmountSold",
-  //   [address]
-  // );
-
-  // const { data: liverate, isLoading: isLiverateLoading } = useContractRead(
-  //   contract,
-  //   "TokenPrice",
-  //   []
-  // );
-
+  const { data: stakedBalance, isLoading: isStakeBalanceLoading } =
+    useContractRead(contract, "totalStakedAmount", [wallet_address]);
+  
   //write funcs
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -279,210 +229,80 @@ const Dashboard = () => {
     });
   }, []);
 
-  //console.log("Address", referralCode);
+  ////console.log("Address", referralCode);
 
   //approve tokens
   const { mutateAsync: approve, isLoading: isApproveLoading } =
     useContractWrite(USDTContract, "approve");
-
-  const handleCopyReferralLink = () => {
-    if (referralLinkRef.current) {
-      referralLinkRef.current.select();
-      document.execCommand("copy");
-      window.getSelection().removeAllRanges();
-
-      // Use react-toastify to display a toaster notification
-      toast.success("Referral link copied to clipboard!", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    }
-  };
-
-  const approveTokens = async () => {
-    try {
-      setApproveTokensLoading(true);
-      let spender = "0xEA0Ebbe34Aebe6c68628734384954e10A5b29eBe"; //contract address
-      let approveAmount = ethers.utils.parseEther(approveAmt).toString();
-      const data = await approve({ args: [spender, approveAmount] });
-      console.info("contract call successs", data);
-      toast.success("Successfully approved tokens!", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    } catch (err) {
-      toast.error("Approve Failed !", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      console.error("contract call failure", err);
-    } finally {
-      setApproveAmt("");
-      setApproveTokensLoading(false);
-    }
-  };
-
-  //buyTokens
-  // const { mutateAsync: buyTokens, isLoading: isBuyTokensLoading } =
-  //   useContractWrite(contract, "buyTokens");
-
-  // const getThePlanCounts = async () => {
-  //   setBuyTokenLoading(true);
-  //   try {
-  //     let ref;
-  //     if (parent === "0x0000000000000000000000000000000000000000") {
-  //       ref = referralCode;
-  //     } else {
-  //       ref = parent;
-  //     }
-  //     let usdtAmt = ethers.utils.parseEther(USDTAmt).toString();
-
-  //     console.log("usdtAmt", usdtAmt);
-
-  // const data = await getThePlanCount({ args: [0xDeb088a8c74d948a03897ce9b571592445CFd491
-  //   , 100] });
-  // console.info("contract call successs", data);
-
+ 
   const { data: checkData, isLoading: isCheckLoading } = useContractRead(
     contract,
     "getUnlockPlanDetails",
-    [parent, 50]
+    [Parent, 50]
   );
 
   const { data: getThePlansCount, isLoading: isPlanCountLoading } =
-    useContractRead(contract, "getThePlanCount", [wallet_address, 50]);
-  console.log(wallet_address, "this is issue......");
+    useContractRead(contract, "getThePlanCount", [wallet_address, ethers.utils.parseEther("50")]);
+  //console.log(wallet_address, "this is issue......");
 
   const { data: getThePlansCount100, isLoading: is100PlanCountLoading } =
-    useContractRead(contract, "getThePlanCount", [wallet_address, 100]);
+    useContractRead(contract, "getThePlanCount", [wallet_address, ethers.utils.parseEther("100")]);
 
   const { data: getThePlansCount200, isLoading: is200PlanCountLoading } =
-    useContractRead(contract, "getThePlanCount", [wallet_address, 200]);
+    useContractRead(contract, "getThePlanCount", [wallet_address, ethers.utils.parseEther("200")]);
 
   const { data: getThePlansCount500, isLoading: is500PlanCountLoading } =
-    useContractRead(contract, "getThePlanCount", [wallet_address, 500]);
+    useContractRead(contract, "getThePlanCount", [wallet_address, ethers.utils.parseEther("500")]);
 
   const { data: getThePlansCount1000, isLoading: is1000PlanCountLoading } =
-    useContractRead(contract, "getThePlanCount", [wallet_address, 1000]);
+    useContractRead(contract, "getThePlanCount", [wallet_address, ethers.utils.parseEther("1000")]);
 
   // Checking unlock plans
-  console.log(wallet_address);
+  //console.log(wallet_address);
+
   const { data: lockDetails50, isLoading: isLockLoading50 } = useContractRead(
     contract,
     "getUnlockPlanDetails",
-    [wallet_address, 50]
+    [wallet_address, ethers.utils.parseEther("50")]
   );
-  console.log(lockDetails50);
+
+
+  //console.log(lockDetails50);
   const { data: lockDetails100, isLoading: isLockLoading100 } = useContractRead(
     contract,
     "getUnlockPlanDetails",
-    [wallet_address, 100]
+    [wallet_address, ethers.utils.parseEther("100")]
   );
-  console.log(lockDetails100);
+  //console.log(lockDetails100);
 
   const { data: lockDetails200, isLoading: isLockLoading200 } = useContractRead(
     contract,
     "getUnlockPlanDetails",
-    [wallet_address, 200]
+    [wallet_address, ethers.utils.parseEther("200")]
   );
-  console.log(lockDetails200);
+  //console.log(lockDetails200);
 
   const { data: lockDetails500, isLoading: isLockLoading500 } = useContractRead(
     contract,
     "getUnlockPlanDetails",
-    [wallet_address, 500]
+    [wallet_address, ethers.utils.parseEther("500")]
   );
-  console.log(lockDetails500);
+  //console.log(lockDetails500);
 
   const { data: lockDetails1000, isLoading: isLockLoading1000 } =
-    useContractRead(contract, "getUnlockPlanDetails", [wallet_address, 1000]);
-  console.log(lockDetails1000);
-
-  //     toast.success("Tokens Bought Successfully", {
-  //       position: toast.POSITION.TOP_CENTER,
-  //     });
-  //   } catch (err) {
-  //     toast.error("You can not buy more than $1000 in one transaction", {
-  //       position: toast.POSITION.TOP_CENTER,
-  //     });
-  //     console.error("contract call failure", err);
-  //   } finally {
-  //     setUSDTAmt("");
-  //     setBuyTokenLoading(false);
-  //   }
-  // };
-
-  //sell Token
-  // const { mutateAsync: sellTokens, isLoading: isSellTokenLoading } =
-  //   useContractWrite(contract, "sellTokens");
-
-  // const sellToken = async () => {
-  //   try {
-  //     setSellTokensLoading(true);
-  //     let amount = ethers.utils.parseEther(cunAmt);
-  //     const data = await sellTokens({ args: [amount] });
-  //     console.info("contract call successs", data);
-  //     toast.success("Tokens sold successfully", {
-  //       position: toast.POSITION.TOP_CENTER,
-  //     });
-  //   } catch (err) {
-  //     toast.error("Selling amount exceeds limit", {
-  //       position: toast.POSITION.TOP_CENTER,
-  //     });
-
-  //     console.error("contract call failure", err);
-  //   } finally {
-  //     setCunAmt("");
-  //     setSellTokensLoading(false);
-  //   }
-  // };
-
-  //withdraw Tokens
-  // const { mutateAsync: withdraw, isLoading: isWithdrawTokensLoading } =
-  //   useContractWrite(contract, "withdraw");
-
-  // const withdrawToken = async () => {
-  //   try {
-  //     setWithdrawTokensLoading(true);
-  //     let amount = ethers.utils.parseEther(withdrawAmt);
-  //     const data = await withdraw({ args: [amount] });
-  //     console.info("contract call successs", data);
-  //     toast.success("Tokens Has Been Successfully Withdrawn", {
-  //       position: toast.POSITION.TOP_CENTER,
-  //     });
-  //   } catch (err) {
-  //     toast.error("Tokens Withdraw Failed", {
-  //       position: toast.POSITION.TOP_CENTER,
-  //     });
-  //     console.error("contract call failure", err);
-  //   } finally {
-  //     setWithdrawAmt("");
-  //     setWithdrawTokensLoading(false);
-  //   }
-  // };
-
+    useContractRead(contract, "getUnlockPlanDetails", [wallet_address, ethers.utils.parseEther("1000")]);
+  //console.log(lockDetails1000);
+  
+  
   useEffect(() => {
     if (
       !walletBalLoading &&
-      // !isCunWalletBalLoading &&
-      //!isTokenPriceLoading &&
       !isDirectChildLoading &&
       !isIndirectChildLoading
     ) {
-      // console.log("contract : ", contract);
-      // console.log(address);
-      // console.log("usdtBal", walletBal);
-      // console.log("cun bal : ", cunWalletBal);
-      // console.log("token price : ", tokenPrice?.toString());
-      // console.log("totalWithdrawn : ", totalWithdrawn?.toString());
+    
     }
-    // if (!isRewardAmtLoading) {
-    //   // console.log(rewardAmt?.toString());
-    // }
-    // if (!isParentLoading) {
-    //  // console.log(parent);
-    // }
-    // if (
-    //   !isAvailableRewardsLoading &&
-    //   !isRewardLimitLoading &&
-    //   !isOwnerLoading
+    
   }, []);
 
   const postData = async (userId) => {
@@ -514,7 +334,7 @@ const Dashboard = () => {
     }
   };
 
-  //console.log(response);
+  ////console.log(response);
 
   useEffect(() => {
     if (userRes.user_id) {
@@ -611,20 +431,17 @@ const Dashboard = () => {
     5
   );
 
-  const modifiedAddress1 = removeAndReplaceMiddleCharacters(parent, 30, 5);
-
+  const modifiedAddress1 = removeAndReplaceMiddleCharacters(Parent, 30, 5);
   var userIDs = localStorage.getItem("userID");
-
   const [userID, setUserID] = useState(userIDs);
-
-  const getParentDetails = async (parent) => {
+  const getParentDetails = async (Parent) => {
     try {
       let dumy = await fetch("https://nodes.mjccoin.io/v1/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ address: parent }),
+        body: JSON.stringify({ address: Parent }),
       });
       let response = await dumy.json();
       setUserID(response.data.user_id);
@@ -638,9 +455,9 @@ const Dashboard = () => {
         setUserRes({ ...response.data });
       }
 
-      //console.log(response.data)
+      ////console.log(response.data)
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -664,7 +481,7 @@ const Dashboard = () => {
   };
 
   const handleParentSearch = () => {
-    getParentDetails(parent);
+    getParentDetails(Parent);
 
     if (checkdataValue === true) {
       fetchParentData();
@@ -673,40 +490,8 @@ const Dashboard = () => {
 
   const ID = userData?.data?.user_id;
 
-  const getstekeTokens = async (userID) => {
-    try {
-      let data = await fetch(
-        `https://nodes.mjccoin.io/steck/get-token?user_id=${ID}`
-      );
-      let response = await data.json();
-      //console.log (previewID,"ussssddddd")
-      setStakeWallet(response.data.total);
-      //console.log()
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getstekeTokens(userID);
-  }, [ID]);
-
-  // const { data: getThePlanCount, isLoading: isPlanCountLoading } = useContractRead(
-  //   contract,
-  //   "getThePlanCount",
-  //   [address]
-  // );
-  const [bnbStakeValue, setBNBStakeValue] = useState("");
-  const getBnbBalance = async () => {
-    try {
-      const balance = await sdk.wallet.balance();
-      setBNBStakeValue(balance.displayValue).toFixed(2);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  getBnbBalance();
+ 
+ 
 
   const [userName, setUserName] = useState("");
   const [userProfile, setUserProfile] = useState(null);
@@ -726,7 +511,7 @@ const Dashboard = () => {
         user_name: userName,
         link: userProfile,
       };
-      console.log(formData);
+      // //console.log(formData);
       const response = await fetch("http://localhost:3200/profile/upload", {
         method: "POST",
         body: formData,
@@ -734,7 +519,7 @@ const Dashboard = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Profile uploaded successfully:", data);
+        //console.log("Profile uploaded successfully:", data);
       } else {
         console.error("Error uploading profile:", response.statusText);
       }
@@ -745,7 +530,7 @@ const Dashboard = () => {
 
   const handleBuyPlan = async () => {
     try {
-      console.log("Inside try block")
+      //console.log("Inside try block")
       const response = await fetch("https://nodes.mjccoin.io/v1/plan-buy", {
         method: "POST",
         headers: {
@@ -753,7 +538,7 @@ const Dashboard = () => {
         },
         body: JSON.stringify({
           user_wallet: address.toLowerCase(),
-          parent_wallet_id: parent.toLowerCase(),
+          parent_wallet_id: Parent.toLowerCase(),
           buyed_plan:[{amount:"0"}],
           user_id: ID,
         }),
@@ -765,7 +550,7 @@ const Dashboard = () => {
       // localStorage.setItem("userData", JSON.stringify(data));
       // setUserData(data);
       // setUserID(data.data?.user_id)
-      console.log(data);
+      //console.log(data);
     } catch (error) {
       toast.success("User tree is failed", {
         position: toast.POSITION.TOP_RIGHT,
@@ -773,6 +558,8 @@ const Dashboard = () => {
       console.error("Error fetching user details:", error);
     }
   };
+
+//console.log(stakedBalance)
 
   return (
     <React.Fragment>
@@ -856,9 +643,9 @@ const Dashboard = () => {
                     </h1>
                     <span
                       className={`${
-                        parent !==
+                        Parent !==
                           "0x0000000000000000000000000000000000000000" &&
-                        parent !== undefined
+                        Parent !== undefined
                           ? "active"
                           : "inactive"
                       }`}
@@ -867,9 +654,9 @@ const Dashboard = () => {
                       {`  
                       ${
                         !isParentLoading &&
-                        parent !==
+                        Parent !==
                           "0x0000000000000000000000000000000000000000" &&
-                        parent !== undefined
+                        Parent !== undefined
                           ? "Activated"
                           : "Inactive"
                       }`}
@@ -898,31 +685,7 @@ const Dashboard = () => {
 
               <div className="col-lg-6">
                 <div className="personal_user_right stack-personal-user">
-                  {/* <div className="personal_link">
-                    <p>
-                      Personal link{" "}
-                      <span className="question_icon">
-                        <i className="fa fa-question" aria-hidden="true"></i>
-                      </span>
-                    </p>
-
-                    <div className="forsage">
-                      <h3>forsage.io/b/xqg1z8</h3>
-                      <button href="#"></button>
-
-                      <input
-                        className="link-copy-input"
-                        type="text"
-                        value={`http://localhost:3000/Registration/?ref=${address}`}
-                        ref={referralLinkRef}
-                        readOnly
-                      />
-
-                      <div className="purch desktop_button_share">
-                        <button onClick={handleCopyReferralLink}>Copy</button>
-                      </div>
-                    </div>
-                  </div> */}
+               
                   <div
                     className="frgx"
                     style={{
@@ -932,7 +695,7 @@ const Dashboard = () => {
                   >
                     <div className="login_to_show">
                       <p>Stake Balance</p>
-                      <h4 className="stacked_value">{stakwallet} MJC</h4>
+                      <h4 className="stacked_value"> {stakedBalance ? ethers.utils.formatEther(stakedBalance) : "0.00"} MJC</h4>
                     </div>
                   </div>
 
@@ -1001,13 +764,13 @@ const Dashboard = () => {
                   // }}
                 >
                   <p className="card_title">Team</p>
-                  <h1>{!isIndirectChildLoading ? indirectChild?.length : 0}</h1>
-                  { !parent || !address || parent == "0x0000000000000000000000000000000000000000" ?
+                  <h1>{!isIndirectChildLoading ? indirectChild?.length + directChild?.length : 0}</h1>
+                  {/* { !Parent || !address || Parent == "0x0000000000000000000000000000000000000000" ?
                   
                   <button disabled onClick={handleBuyPlan} className="setTreeButton">Set Tree</button>
                   : 
                   <button onClick={handleBuyPlan} className="setTreeButton">Set Tree</button>
-                   }       
+                   }        */}
                 </div>
               </div>
 

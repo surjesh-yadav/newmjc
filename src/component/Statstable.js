@@ -10,9 +10,15 @@ import {
 } from "@thirdweb-dev/react";
 
 const Statstable = () => {
+
+    // Retrieve data from localStorage
+    var storedData = localStorage.getItem('userData');
+    var userDataReal = JSON.parse(storedData);
+    const wallet_address = userDataReal?.data?.wallet_address;  
+
     const [tableData, setTableData] = useState("");
     const fetchData2 = () => {
-      const apiUrl = `https://nodes.mjccoin.io/v1/profits?address=${wallet_address}`;
+      const apiUrl = `http://localhost:3200/get/chain?address=${wallet_address.toLowerCase()}`;
       fetch(apiUrl)
         .then((response) => {
           if (!response.ok) {
@@ -22,7 +28,7 @@ const Statstable = () => {
         })
         .then((data) => {
           console.log(data);
-          setTableData(data.data);
+          setTableData(data.data.details);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
@@ -73,10 +79,7 @@ const Statstable = () => {
    
     
      
-    // Retrieve data from localStorage
-    var storedData = localStorage.getItem('userData');
-    var userDataReal = JSON.parse(storedData);
-    const wallet_address = userDataReal?.data?.wallet_address;  
+ 
   
   return (
     <React.Fragment>
@@ -122,12 +125,10 @@ const Statstable = () => {
               <table className="table">
                 <thead>
                   <tr>
-                    <th>Type</th>
-                    <th>Date</th>
-                    <th>ID</th>
-                    
-                    <th>Wallet</th>
-                    <th>USDT</th>
+                   <th> </th>
+                    <th>Amount</th>
+                    <th>Level</th>
+                    <th>User Id</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -136,40 +137,19 @@ const Statstable = () => {
                       return (
                         <tr key={index}>
                           <td>
-                            <span className="users_icon">
-                              <i className="fa fa-user" aria-hidden="true"></i>
+                            <span className="">
+                            <img src="/tick.svg"/>
                             </span>
                           </td>
-                          <td>{new Date(item.time).toISOString().split('T')[0]}</td>
+                          <td>{item.amount}</td>
                           <td>
                             <Link className="link_table link_table2">
-                             {item.user_id}
+                             {item.level}
                             </Link>
                           </td>
+ 
                           <td>
-                            <div className="link_icon">
-                              <p>
-                                <a href="#" className="link_table">
-                                  {item.user_wallet}{" "}
-                                  {/* Replace with actual data */}
-                                  <span className="files">
-                                    <i
-                                      className="fa fa-files-o"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </span>
-                                  <span className="linkIcon">
-                                    <i
-                                      className="fa fa-link"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </span>
-                                </a>
-                              </p>
-                            </div>
-                          </td>
-                          <td>
-                            {(item.profit).toFixed(2)}
+                            {(item.user_id)}
                           </td>
                         </tr>
                       );

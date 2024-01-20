@@ -30,7 +30,8 @@
         </filter>
         <linearGradient id="paint013_linear_5612_25796" x1="23.5312" y1="21" x2="144.531" y2="161" gradientUnits="userSpaceOnUse">
             <stop stop-color="#323435"/>
-            <stop offset="1" stop-color="#242526"/>
+            <stop offset="1" stop-color="#0e0f10;
+"/>
         </linearGradient>
     </defs>
 </svg>

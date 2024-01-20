@@ -110,9 +110,9 @@ const Landingpage = () => {
   const wallet_address = useAddress()
 
 
-  const { data: parent, isLoading: isParentLoading } = useContractRead(
+  const { data: Parent, isLoading: isParentLoading } = useContractRead(
     contract,
-    "getParent",
+    "Parent",
     [wallet_address]
   );
 
@@ -192,7 +192,7 @@ const handleSearchDashboard = ()=>{
             </p>
             <div className="join_bth">
             
-            {parent === "0x0000000000000000000000000000000000000000" || parent === undefined ? 
+            {Parent === "0x0000000000000000000000000000000000000000" || Parent === undefined ? 
               <button>
                 <a href="/Registration" className="join_btn">
                  Sign In
