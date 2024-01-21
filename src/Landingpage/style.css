@@ -3,7 +3,7 @@
 .landingpage_main {
     width: 100%;
     display: inline-block;
-    /* background: #18191A; */
+    /* background: #0b0c0c; */
 }
 
 .rodmap_main {
@@ -443,7 +443,7 @@ img.smart_chain_icon {
 .main_top_logo {
     display: flex;
     justify-content: space-between;
-    /* background: #18191A; */
+    /* background: #0b0c0c; */
     padding: 14px 30px 1px 30px;
     color: white;
     position: fixed;

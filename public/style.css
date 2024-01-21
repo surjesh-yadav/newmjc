@@ -28,7 +28,7 @@ body {
 
 /* Track */
 .sidebar::-webkit-scrollbar-track {
-  background: #18191A;
+  background: #0b0c0c;
 }
 
 /* Handle */
@@ -1184,7 +1184,7 @@ img.greenBg2 {
 
 /* Track */
 .tabls::-webkit-scrollbar-track {
-  background: #18191A;
+  background: #0b0c0c;
   border-radius: 10px;
 }
 
@@ -1604,7 +1604,7 @@ th {
     top: 0;
     /* z-index: 99999; */
     padding: 0;
-    background-color: #18191A;
+    background-color: #0b0c0c;
   }
 
   .sidebar a {
@@ -2471,4 +2471,15 @@ span.inactive {
   display: flex;
   gap: 10px;
   justify-content: end;
+}
+
+
+.tabls{
+  overflow-x: auto !important;
+}
+
+
+.nodata_h{
+  font-size: 15px;
+  padding: 10px;
 }

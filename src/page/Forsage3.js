@@ -280,7 +280,7 @@ useEffect(()=>{
                   </tr>
                 </thead>
                 <tbody>
-                  {displayedtableData &&
+                  {displayedtableData.length > 0 ? 
                     displayedtableData.map((item, index) => {
                       return (
                         <>
@@ -326,7 +326,7 @@ useEffect(()=>{
                         </tr>
                         </>
                       );
-                    })}
+                    }) : <h1 className="nodata_h">No data found!</h1>}
                 </tbody>
               </table>
               {tableData.length > 10 &&
