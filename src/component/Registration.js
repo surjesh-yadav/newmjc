@@ -182,7 +182,7 @@ const Registration = () => {
  
 
   const { contract } = useContract(
-    "0xc81f6530Ec56C226817Bfa297B9B0cc7DFCD7dD1"
+    "0x11B9BDd8CD2C2E8A62fc2b7aB26de7Ef89AA216D"
   );
   const { data: cunWalletBal, isLoading: isCunWalletBalLoading } =
     useTokenBalance(contract, address);
@@ -227,7 +227,7 @@ const Registration = () => {
   // const approveTokens = async () => {
   //   setApproveTokensLoading(true);
   //   try {
-  //     let spender = "0xc81f6530Ec56C226817Bfa297B9B0cc7DFCD7dD1"; //contract address
+  //     let spender = "0x11B9BDd8CD2C2E8A62fc2b7aB26de7Ef89AA216D"; //contract address
   //     let approveAmount = ethers.utils.parseEther(spending);
   //     const data = await approve({ args: [spender, approveAmount] });
   //     console.info("contract call successs", data);
@@ -249,7 +249,7 @@ const Registration = () => {
   const approveTokens = async () => {
     setBuyTokenLoading(true);
   try {
-    let spender = "0xc81f6530Ec56C226817Bfa297B9B0cc7DFCD7dD1"; //contract address
+    let spender = "0x11B9BDd8CD2C2E8A62fc2b7aB26de7Ef89AA216D"; //contract address
     let approveAmount = ethers.utils.parseEther(spending);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
@@ -279,25 +279,6 @@ const Registration = () => {
         });
       }
     }
-
-  const postingData = async (previewID) => {
-    //console.log(previewID, "this is a preview id");
-    try {
-      const response = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user_id: previewID }),
-      });
-      const data = await response.json();
-      //console.log(data, " this is posting  data");
-      localStorage.setItem("userData", JSON.stringify(data));
-      setUserData(data);
-    } catch (error) {
-      console.error("Error fetching user details:", error);
-    }
-  };
 
 
   var storedData = localStorage.getItem('userData');
@@ -357,6 +338,7 @@ const Registration = () => {
       let response = await dumy.json();
       localStorage.setItem("userID", JSON.stringify(response.data.user_id));
       setUserId(response.data.user_id);
+      setUserData(response.data.data)
     } catch (error) {
      // console.log(error);
     }
@@ -391,12 +373,31 @@ const Registration = () => {
     }
   };
 
-  // console.log(address);
-  // console.log(result2,"Amountsss");
-  // console.log(selectedValue,"Selected value"); 
+  
+  const postingData = async () => {
+    //console.log(previewID, "this is a preview id");
+    try {
+      const response = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_id: userID }),
+      });
+      const data = await response.json();
+      //console.log(data, " this is posting  data");
+      localStorage.setItem("userData", JSON.stringify(data));
+      setUserData(data);
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    }
+  };
+
+
 
 
   const handleBuyPlan = async () => {
+    postingData()
     try {
       console.log("Inside try block")
       const response = await fetch("https://nodes.mjccoin.io/v1/plan-buy", {

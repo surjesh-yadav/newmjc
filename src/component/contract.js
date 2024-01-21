@@ -1,5 +1,5 @@
-export const stakecontract = "0xc81f6530Ec56C226817Bfa297B9B0cc7DFCD7dD1";
-export const stake_abi = [
+export const stakecontract = "0x11B9BDd8CD2C2E8A62fc2b7aB26de7Ef89AA216D";
+export const stake_abi =  [
 	{
 		"inputs": [
 			{

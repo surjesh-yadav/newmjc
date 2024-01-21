@@ -71,7 +71,7 @@ const Partnerstable = () => {
     const wallet_address = userDataReal?.data?.wallet_address;
   
     const { contract } = useContract(
-      "0xc81f6530Ec56C226817Bfa297B9B0cc7DFCD7dD1"
+      "0x11B9BDd8CD2C2E8A62fc2b7aB26de7Ef89AA216D"
     );
     const { contract: USDTContract } = useContract(
       "0x0ECBBF0D46E13cC4fffdf14AbC39D8332c89Ad8b"

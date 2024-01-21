@@ -16,7 +16,7 @@ const Statstable = () => {
   const [tableData, setTableData] = useState("");
 
   const fetchData2 = () => {
-    const apiUrl = `https://nodes.mjccoin.io/get/chain?address=${wallet_address.toLowerCase()}`;
+    const apiUrl = `http://localhost:3200/get/chain?address=${wallet_address.toLowerCase()}`;
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
