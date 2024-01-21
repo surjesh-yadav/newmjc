@@ -93,7 +93,7 @@ const Statstable = () => {
 
   const renderPageNumbers = () => {
     const pageNumbers = [];
-    const maxPagesToShow = 10; // You can adjust this number based on your preference
+    const maxPagesToShow = 3; // You can adjust this number based on your preference
 
     if (10 <= maxPagesToShow) {
       // If there are fewer pages than the max to show, display all pages
@@ -223,8 +223,8 @@ const Statstable = () => {
                 })}
             </tbody>
           </table>
-          {tableData.length > 10 &&
-          <div className="flex  justify-end ">
+          {/* {tableData.length > 10 && */}
+          <div className="flex pagination_postion justify-end ">
             <div className="pagination-container flex space-between space-x-5">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
@@ -245,7 +245,7 @@ const Statstable = () => {
               </button>
             </div>
           </div>
-          }
+          {/* } */}
         </div>
       </div>
       {/* </div> */}

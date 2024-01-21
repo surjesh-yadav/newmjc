@@ -262,7 +262,7 @@ const Partnerstable = () => {
                 </tbody>
               </table>
               {tableData.length > 10 &&
-          <div className="flex  justify-end ">
+          <div className="flex pagination_postion justify-end ">
             <div className="pagination-container flex space-between space-x-5">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}

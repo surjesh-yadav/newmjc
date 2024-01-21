@@ -2467,3 +2467,8 @@ span.inactive {
   border-radius: 3px;
 }
 
+.pagination_postion{
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+}
