@@ -114,6 +114,79 @@ useEffect(()=>{
     </h3>
   ));
 
+  
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const displayedtableData = tableData?.slice(startIndex, endIndex);
+
+  const [activeTab, setActiveTab] = useState(1);
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    const maxPagesToShow = 10; // You can adjust this number based on your preference
+
+    if (10 <= maxPagesToShow) {
+      // If there are fewer pages than the max to show, display all pages
+      for (let i = 1; i <= 10; i++) {
+        pageNumbers.push(
+          <span
+            key={i}
+            onClick={() => handlePageChange(i)}
+            className={currentPage === i ? "active" : ""}
+          >
+            {i}
+          </span>
+        );
+      }
+    } else {
+      // Display ellipsis and a range of pages around the current page
+      const startPage = Math.max(
+        1,
+        currentPage - Math.floor(maxPagesToShow / 2)
+      );
+      const endPage = Math.min(10, startPage + maxPagesToShow - 1);
+
+      if (startPage > 1) {
+        pageNumbers.push(<span key="startEllipsis">...</span>);
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        pageNumbers.push(
+          <span
+            key={i}
+            onClick={() => handlePageChange(i)}
+            className={currentPage === i ? "active" : ""}
+          >
+            {i}
+          </span>
+        );
+      }
+
+      if (endPage < 10) {
+        pageNumbers.push(<span key="endEllipsis">...</span>);
+        // Display the last two digits
+        pageNumbers.push(
+          <span
+            key={10}
+            onClick={() => handlePageChange(10)}
+            className={currentPage === 10 ? "active" : ""}
+          >
+            {10}
+          </span>
+        );
+      }
+    }
+
+    return pageNumbers;
+  };
+
   return (
     <React.Fragment>
       <div className="container">
@@ -204,8 +277,8 @@ useEffect(()=>{
                   </tr>
                 </thead>
                 <tbody>
-                  {tableData &&
-                    tableData.map((item, index) => {
+                  {displayedtableData &&
+                    displayedtableData.map((item, index) => {
                       return (
                         <>
                         <tr key={index}>
@@ -253,6 +326,29 @@ useEffect(()=>{
                     })}
                 </tbody>
               </table>
+              {tableData.length > 10 &&
+          <div className="flex  justify-end ">
+            <div className="pagination-container flex space-between space-x-5">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </button>
+
+              <div className="page-numbers  flex space-x-2">
+                {renderPageNumbers()}
+              </div>
+
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === 10}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+          }
             </div>
           </div>
         </div>
