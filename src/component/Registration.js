@@ -23,6 +23,7 @@ import {
 import { ethers } from "ethers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UsdtContract, usdt_abi } from "./usdt.js";
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -223,30 +224,61 @@ const Registration = () => {
     }
   };
 
+  // const approveTokens = async () => {
+  //   setApproveTokensLoading(true);
+  //   try {
+  //     let spender = "0xc81f6530Ec56C226817Bfa297B9B0cc7DFCD7dD1"; //contract address
+  //     let approveAmount = ethers.utils.parseEther(spending);
+  //     const data = await approve({ args: [spender, approveAmount] });
+  //     console.info("contract call successs", data);
+  //     setApproveTokensLoading(false);
+  //     toast.success("Successfully approved tokens!", {
+  //       position: toast.POSITION.TOP_CENTER,
+  //     });
+  //   } catch (err) {
+  //     toast.error("Approve Failed !", {
+  //       position: toast.POSITION.TOP_CENTER,
+  //     });
+  //     console.error("contract call failure", err);
+  //   } finally {
+  //     setApproveAmt("");
+  //     setApproveTokensLoading(false);
+  //   }
+  // };
+
   const approveTokens = async () => {
-    setApproveTokensLoading(true);
-    try {
-      let spender = "0xc81f6530Ec56C226817Bfa297B9B0cc7DFCD7dD1"; //contract address
-      let approveAmount = ethers.utils.parseEther(spending);
-      const data = await approve({ args: [spender, approveAmount] });
-      console.info("contract call successs", data);
-      setApproveTokensLoading(false);
-      toast.success("Successfully approved tokens!", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    } catch (err) {
-      toast.error("Approve Failed !", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      console.error("contract call failure", err);
-    } finally {
-      setApproveAmt("");
-      setApproveTokensLoading(false);
+    setBuyTokenLoading(true);
+  try {
+    let spender = "0xc81f6530Ec56C226817Bfa297B9B0cc7DFCD7dD1"; //contract address
+    let approveAmount = ethers.utils.parseEther(spending);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+     UsdtContract,
+     usdt_abi,
+     signer,
+    );
+    console.log(contract);
+    const token = await contract.approve(spender, approveAmount.toString(), { gasLimit: 3000000});
+    console.log(token);
+   
+      
+        const receipt = await token.wait();
+        console.log(receipt)
+        console.log(receipt.status)
+              if (receipt.status === 1) {
+          toast.success("Successfully approved tokens!", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        }
+        setBuyTokenLoading(false);
+      } catch (error) {
+        setBuyTokenLoading(false);
+        toast.error("Failed", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
     }
-  };
-
-  // posting id
-
 
   const postingData = async (previewID) => {
     //console.log(previewID, "this is a preview id");
