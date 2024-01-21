@@ -30,7 +30,7 @@ const PriviewId = () => {
 
   const handleSearch = () => {
     fetchData();
-    toggleDropdown2();
+    
   };
 
   console.log(userData);

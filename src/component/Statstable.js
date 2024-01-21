@@ -62,7 +62,7 @@ const Statstable = () => {
   const handleSearch = () => {
     fetchData();
     fetchData2();
-    toggleDropdown2();
+    
   };
   useEffect(() => {
     fetchData2();
