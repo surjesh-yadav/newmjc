@@ -195,14 +195,18 @@ const Statstable = () => {
             <thead>
               <tr>
                 <th>Type</th>
-                <th>Amount</th>
-                <th>User ID</th>
                 <th>Level</th>
+                <th>Wallet Address</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>User ID</th>
+                <td>Time</td>
               </tr>
             </thead>
             <tbody>
               {displayedtableData.length > 0 ? 
                 displayedtableData.map((item, index) => {
+                if (item.amount > 0) {
                   return (
                     <tr key={index}>
                       <td>
@@ -210,16 +214,21 @@ const Statstable = () => {
                           <img src="/tick.svg" />
                         </span>
                       </td>
+                      <td>{item.level}</td>
+                      <td>{item.wallet_address}</td>
                       <td>{item.amount.toFixed(2)} USDT</td>
+                      <td className="status_row">{item.status ? item.status : <p className="recieved_status">Received</p>}</td>
                       <td>
                         <Link className="link_table link_table2">
                           {item.user_id}
                         </Link>
                       </td>
-
-                      <td>{item.level}</td>
+                       <td>{new Date(item.time).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</td>
+                    
                     </tr>
+                  
                   );
+                  }
                 }) : <h1 className="nodata_h">No data found!</h1>}
             </tbody>
           </table>

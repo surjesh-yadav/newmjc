@@ -2483,3 +2483,26 @@ span.inactive {
   font-size: 15px;
   padding: 10px;
 }
+
+
+.table tbody tr td{
+  vertical-align: middle !important;
+}
+
+.table tbody tr td p{
+ margin-bottom: 0px !important;
+}
+
+
+.recieved_status{
+  color: rgb(37, 238, 114);
+}
+
+
+.status_row{
+  color: orange;
+}
+
+.menu_mobile_drop{
+  padding-left: 14px;
+}

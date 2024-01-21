@@ -94,7 +94,7 @@ const Navbar = () => {
 
           <div className="sid_menus_all">
             <div className="priviewld"></div>
-            <Link className="active" to="/">
+            <Link className="active" to="/dashboard">
               <span className="iconnav">
                 <img className="iconnav" src={icon3} alt="icon" />
               </span>
@@ -117,7 +117,7 @@ const Navbar = () => {
                 </span>
               </Link>
 
-              <div className="menu_dropdown">
+              <div className="menu_dropdown menu_mobile_drop">
                 <Link className="dropdown-item" to="/partners">
                   {" "}
                   <span className="iconnav">

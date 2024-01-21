@@ -157,7 +157,6 @@ const Registration = () => {
   var storedData = localStorage.getItem("userID");
   var userDataID = JSON.parse(storedData);
   //console.log(userDataID , " this is  user_id");
-  //read functions
   let address = useAddress();
 
   const getMainUserId = async (address) => {
@@ -180,9 +179,9 @@ const Registration = () => {
  
     getMainUserId(address);
  
-
+  //read functions
   const { contract } = useContract(
-    "0x11B9BDd8CD2C2E8A62fc2b7aB26de7Ef89AA216D"
+    "0x6563536d18b13EE77E255085695DcCa1C78b716A"
   );
   const { data: cunWalletBal, isLoading: isCunWalletBalLoading } =
     useTokenBalance(contract, address);
@@ -199,6 +198,17 @@ const Registration = () => {
     "getParent",
     [address]
   );
+
+  const { data: tierState, isLoading: isStateLoading } = useContractRead(
+    contract,
+    "tierState",
+    [ethers.utils.parseEther("50")]
+  );
+
+
+console.log(tierState)
+
+
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -227,7 +237,7 @@ const Registration = () => {
   // const approveTokens = async () => {
   //   setApproveTokensLoading(true);
   //   try {
-  //     let spender = "0x11B9BDd8CD2C2E8A62fc2b7aB26de7Ef89AA216D"; //contract address
+  //     let spender = "0x6563536d18b13EE77E255085695DcCa1C78b716A"; //contract address
   //     let approveAmount = ethers.utils.parseEther(spending);
   //     const data = await approve({ args: [spender, approveAmount] });
   //     console.info("contract call successs", data);
@@ -249,7 +259,7 @@ const Registration = () => {
   const approveTokens = async () => {
     setBuyTokenLoading(true);
   try {
-    let spender = "0x11B9BDd8CD2C2E8A62fc2b7aB26de7Ef89AA216D"; //contract address
+    let spender = "0x6563536d18b13EE77E255085695DcCa1C78b716A"; //contract address
     let approveAmount = ethers.utils.parseEther(spending);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
@@ -400,7 +410,7 @@ const Registration = () => {
     postingData()
     try {
       console.log("Inside try block")
-      const response = await fetch("https://nodes.mjccoin.io/v1/plan-buy", {
+      const response = await fetch("http://localhost:3200/v1/plan-buy", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -408,7 +418,7 @@ const Registration = () => {
         body: JSON.stringify({
           user_wallet: address.toLowerCase(),
           parent_wallet_id: referralCode.toLowerCase(),
-          buyed_plan:[{amount: selectedValue - (selectedValue*0.15)}],
+          buyed_plan:[{amount: 0}],
           user_id: userID,
         }),
       });

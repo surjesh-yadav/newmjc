@@ -103,8 +103,9 @@ const Dashboard = () => {
         body: JSON.stringify({ user_id: previewID }),
       });
       const data = await response.json();
-      localStorage.setItem("userData", JSON.stringify(data));
       setUserData(data);
+      localStorage.setItem("userData", JSON.stringify(data));
+     
       setUserID(data.data?.user_id);
     } catch (error) {
       console.error("Error fetching user details:", error);
@@ -158,7 +159,7 @@ const Dashboard = () => {
   //read functions
   const address = useAddress();
   const { contract } = useContract(
-    "0x11B9BDd8CD2C2E8A62fc2b7aB26de7Ef89AA216D"
+    "0x6563536d18b13EE77E255085695DcCa1C78b716A"
   );
   // const { data: stakeBalance, isLoading: isCunWalletBalLoading } =
   //   useTokenBalance(contract, address);
@@ -240,6 +241,8 @@ const Dashboard = () => {
     "getUnlockPlanDetails",
     [Parent, 50]
   );
+
+
 
   const { data: getThePlansCount, isLoading: isPlanCountLoading } =
     useContractRead(contract, "getThePlanCount", [wallet_address, ethers.utils.parseEther("50")]);
@@ -445,13 +448,15 @@ const Dashboard = () => {
       });
       let response = await dumy.json();
       setUserID(response.data.user_id);
-
+      setUserData(response.data)
       localStorage.setItem("userID", JSON.stringify(response.data.user_id));
-
+      localStorage.setItem("userData", JSON.stringify(response.data));
+       
       if (!response) {
         // setLoading(true)
       } else {
         setLoading(false);
+        window.location.reload();
         setUserRes({ ...response.data });
       }
 
@@ -475,6 +480,7 @@ const Dashboard = () => {
       const data = await response.json();
       localStorage.setItem("userData", JSON.stringify(data));
       setUserData(data);
+     
     } catch (error) {
       console.error("Error fetching user details:", error);
     }
@@ -482,10 +488,12 @@ const Dashboard = () => {
 
   const handleParentSearch = () => {
     getParentDetails(Parent);
-
-    if (checkdataValue === true) {
+   
+ 
+    // if (checkdataValue === true) {
       fetchParentData();
-    }
+      
+    // }
   };
 
   const ID = userData?.data?.user_id;
