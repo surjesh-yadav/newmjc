@@ -223,7 +223,7 @@ const Statstable = () => {
                 })}
             </tbody>
           </table>
-          {/* {tableData.length > 10 && */}
+          {tableData.length > 10 &&
           <div className="flex pagination_postion justify-end ">
             <div className="pagination-container flex space-between space-x-5">
               <button
@@ -245,7 +245,7 @@ const Statstable = () => {
               </button>
             </div>
           </div>
-          {/* } */}
+          }
         </div>
       </div>
       {/* </div> */}
