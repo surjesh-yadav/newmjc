@@ -30,7 +30,7 @@ const Forsage1 = () => {
   const [tableData, setTableData] = useState("");
   const fetchData2 = () => {
     
-    const apiUrl = `https://nodes.mjccoin.io/v1/filtering?address=${wallet_address}&amount=100`;
+    const apiUrl = `http://localhost:3200/v1/filtering?address=${wallet_address}&amount=100`;
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
@@ -58,7 +58,7 @@ const Forsage1 = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
+      const response = await fetch("http://localhost:3200/v1/alldetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

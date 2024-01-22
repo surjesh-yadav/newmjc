@@ -55,7 +55,7 @@ const Navbar = () => {
   const fetchData = async () => {
     console.log("Clicked");
     try {
-      const response = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
+      const response = await fetch("http://localhost:3200/v1/alldetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -95,7 +95,7 @@ const Dashboard = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
+      const response = await fetch("http://localhost:3200/v1/alldetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -175,7 +175,7 @@ const Dashboard = () => {
     ////console.log(Address.toLowerCase())
 
     try {
-      let dumy = await fetch("https://nodes.mjccoin.io/v1/user", {
+      let dumy = await fetch("http://localhost:3200/v1/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -309,7 +309,7 @@ const Dashboard = () => {
   }, []);
 
   const postData = async (userId) => {
-    const apiUrl = "https://nodes.mjccoin.io/v1/alldetails";
+    const apiUrl = "http://localhost:3200/v1/alldetails";
 
     try {
       const response = await fetch(apiUrl, {
@@ -439,7 +439,7 @@ const Dashboard = () => {
   const [userID, setUserID] = useState(userIDs);
   const getParentDetails = async (Parent) => {
     try {
-      let dumy = await fetch("https://nodes.mjccoin.io/v1/user", {
+      let dumy = await fetch("http://localhost:3200/v1/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -470,7 +470,7 @@ const Dashboard = () => {
 
   const fetchParentData = async () => {
     try {
-      const response = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
+      const response = await fetch("http://localhost:3200/v1/alldetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -520,7 +520,7 @@ const Dashboard = () => {
         link: userProfile,
       };
       // //console.log(formData);
-      const response = await fetch("https://nodes.mjccoin.io/profile/upload", {
+      const response = await fetch("http://localhost:3200/profile/upload", {
         method: "POST",
         body: formData,
       });
@@ -539,7 +539,7 @@ const Dashboard = () => {
   const handleBuyPlan = async () => {
     try {
       //console.log("Inside try block")
-      const response = await fetch("https://nodes.mjccoin.io/v1/plan-buy", {
+      const response = await fetch("http://localhost:3200/v1/plan-buy", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

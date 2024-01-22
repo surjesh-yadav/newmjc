@@ -63,7 +63,7 @@ const Landingpage = () => {
 
   const fetchData = async (UserID) => {
     try {
-      const response = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
+      const response = await fetch("http://localhost:3200/v1/alldetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +122,7 @@ const [userID, setUserId] = useState("")
   const getDetails = async (wallet_address) => {
     console.log(wallet_address)
     try {
-      let dumy = await fetch("https://nodes.mjccoin.io/v1/user", {
+      let dumy = await fetch("http://localhost:3200/v1/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

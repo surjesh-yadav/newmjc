@@ -161,7 +161,7 @@ const Registration = () => {
 
   const getMainUserId = async (address) => {
     try {
-      let dumy = await fetch("https://nodes.mjccoin.io/v1/allDetails", {
+      let dumy = await fetch("http://localhost:3200/v1/allDetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -338,7 +338,7 @@ console.log(tierState)
   const getDetails = async (address) => {
     //console.log(address);
     try {
-      let dumy = await fetch("https://nodes.mjccoin.io/v1/user", {
+      let dumy = await fetch("http://localhost:3200/v1/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -361,7 +361,7 @@ console.log(tierState)
   const postingSteckTokens = async (userID, newValue) => {
        setStakeLoading(true)
     try {
-      let data = await fetch("https://nodes.mjccoin.io/steck/post-token", {
+      let data = await fetch("http://localhost:3200/steck/post-token", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -387,7 +387,7 @@ console.log(tierState)
   const postingData = async () => {
     //console.log(previewID, "this is a preview id");
     try {
-      const response = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
+      const response = await fetch("http://localhost:3200/v1/alldetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -418,7 +418,7 @@ console.log(tierState)
         body: JSON.stringify({
           user_wallet: address.toLowerCase(),
           parent_wallet_id: referralCode.toLowerCase(),
-          buyed_plan:[{amount: 0}],
+          buyed_plan:[{amount: selectedValue}],
           user_id: userID,
         }),
       });
@@ -514,7 +514,7 @@ const rate = "100";
 
   const handleUserWallet = async () => {
     try {
-      let dumy = await fetch("https://nodes.mjccoin.io/v1/allDetails", {
+      let dumy = await fetch("http://localhost:3200/v1/allDetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -583,7 +583,7 @@ const rate = "100";
 
   const postData = async (userId) => {
     // const userId = 27;
-    const apiUrl = "https://nodes.mjccoin.io/v1/alldetails";
+    const apiUrl = "http://localhost:3200/v1/alldetails";
 
     try {
       const response = await fetch(apiUrl, {
@@ -829,7 +829,7 @@ const rate = "100";
                     />
 
                     <button onClick={approveTokens} className="buy_button_MJC">
-                      Approve MJC Tokens
+                      Approve USDT to spend
                     </button>
                   </div>
                   <div className="tab-content">

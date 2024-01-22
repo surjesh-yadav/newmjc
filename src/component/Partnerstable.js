@@ -37,7 +37,7 @@ const Partnerstable = () => {
   
     const fetchData = async () => {
       try {
-        const response = await fetch("https://nodes.mjccoin.io/v1/alldetails", {
+        const response = await fetch("http://localhost:3200/v1/alldetails", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -194,7 +194,7 @@ const Partnerstable = () => {
         <div className="container">
           <div className="forsgae1_main">
                 <div className="Total_revenue">
-                  <p>Total Direct revenue</p>
+                  <p></p>
                   <h5>
                     {/* {box50 ? ((50 - 50 * 0.15) / 2) * box50 : "0.00"} USDT */}
                   </h5>
