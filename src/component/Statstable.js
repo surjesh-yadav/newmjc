@@ -16,7 +16,7 @@ const Statstable = () => {
   const [tableData, setTableData] = useState("");
 
   const fetchData2 = () => {
-    const apiUrl = `http://localhost:3200/get/chain?address=${wallet_address.toLowerCase()}`;
+    const apiUrl = `http://localhost:3200/get/chain?address=${wallet_address?.toLowerCase()}`;
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
@@ -200,7 +200,7 @@ const Statstable = () => {
                 <th>Amount</th>
                 <th>Status</th>
                 <th>User ID</th>
-                <td>Time</td>
+                <th>Time</th>
               </tr>
             </thead>
             <tbody>

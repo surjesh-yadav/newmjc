@@ -825,7 +825,7 @@ const Dashboard = () => {
                       </p>
                     </div>
 
-                    <div className="pro_num">
+                    {/* <div className="pro_num">
                       <h1>
                         {result2 && result2 !== "NaN" ? result2 : "0.00"} MJC
                       </h1>
@@ -841,7 +841,7 @@ const Dashboard = () => {
                           : "0.00"}{" "}
                         MJC
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

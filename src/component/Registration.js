@@ -840,7 +840,7 @@ const rate = "100";
                       }`}
                     >
                       <div className="buy_token_card">
-                        <h1>Buy MJC Tokens</h1>
+                        <h1>Buy USDT Plan</h1>
 
                         <form onSubmit={onFormSubmit}>
                           <div className="buy_mjc_one_input">
@@ -896,7 +896,7 @@ const rate = "100";
                             className="buy_button_MJC"
                           >
                             {" "}
-                            Purchase tokens
+                            Purchase Plan
                           </Button>
                         </form>
                       </div>
