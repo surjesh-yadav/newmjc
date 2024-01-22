@@ -437,6 +437,7 @@ const Dashboard = () => {
   const modifiedAddress1 = removeAndReplaceMiddleCharacters(Parent, 30, 5);
   var userIDs = localStorage.getItem("userID");
   const [userID, setUserID] = useState(userIDs);
+
   const getParentDetails = async (Parent) => {
     try {
       let dumy = await fetch("http://localhost:3200/v1/user", {
@@ -450,7 +451,7 @@ const Dashboard = () => {
       setUserID(response.data.user_id);
       setUserData(response.data)
       localStorage.setItem("userID", JSON.stringify(response.data.user_id));
-      localStorage.setItem("userData", JSON.stringify(response.data));
+      // localStorage.setItem("userData", JSON.stringify(response.data));
        
       if (!response) {
         // setLoading(true)

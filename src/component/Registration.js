@@ -170,14 +170,14 @@ const Registration = () => {
       });
       let response = await dumy.json();
       //console.log(response.data.user_id, "this is my main id");
-      localStorage.setItem("userData", JSON.stringify(response));
+      // localStorage.setItem("userData", JSON.stringify(response?.data));
       setMainUserId(response.data?.user_id);
     } catch (error) {
       console.log(error);
     }
   };
  
-    getMainUserId(address);
+ 
  
   //read functions
   const { contract } = useContract(
@@ -205,11 +205,6 @@ const Registration = () => {
     [ethers.utils.parseEther("50")]
   );
 
-
-console.log(tierState)
-
-
-
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.forEach((value, key) => {
@@ -233,29 +228,7 @@ console.log(tierState)
       });
     }
   };
-
-  // const approveTokens = async () => {
-  //   setApproveTokensLoading(true);
-  //   try {
-  //     let spender = "0x5E19d78968baD32Fd9DA4B8ea55716068b1EC82a"; //contract address
-  //     let approveAmount = ethers.utils.parseEther(spending);
-  //     const data = await approve({ args: [spender, approveAmount] });
-  //     console.info("contract call successs", data);
-  //     setApproveTokensLoading(false);
-  //     toast.success("Successfully approved tokens!", {
-  //       position: toast.POSITION.TOP_CENTER,
-  //     });
-  //   } catch (err) {
-  //     toast.error("Approve Failed !", {
-  //       position: toast.POSITION.TOP_CENTER,
-  //     });
-  //     console.error("contract call failure", err);
-  //   } finally {
-  //     setApproveAmt("");
-  //     setApproveTokensLoading(false);
-  //   }
-  // };
-
+ 
   const approveTokens = async () => {
     setBuyTokenLoading(true);
   try {
@@ -335,8 +308,8 @@ console.log(tierState)
   };
 
   const [userID, setUserId] = useState("");
+
   const getDetails = async (address) => {
-    //console.log(address);
     try {
       let dumy = await fetch("http://localhost:3200/v1/user", {
         method: "POST",
@@ -347,12 +320,16 @@ console.log(tierState)
       });
       let response = await dumy.json();
       localStorage.setItem("userID", JSON.stringify(response.data.user_id));
+      localStorage.setItem("userData", JSON.stringify(response.data));
+
       setUserId(response.data.user_id);
       setUserData(response.data.data)
     } catch (error) {
      // console.log(error);
     }
-  };
+}
+
+
   useEffect(() => {
     getDetails(address); 
   }, [address]);
@@ -385,7 +362,6 @@ console.log(tierState)
 
   
   const postingData = async () => {
-    //console.log(previewID, "this is a preview id");
     try {
       const response = await fetch("http://localhost:3200/v1/alldetails", {
         method: "POST",
@@ -397,14 +373,10 @@ console.log(tierState)
       const data = await response.json();
       //console.log(data, " this is posting  data");
       localStorage.setItem("userData", JSON.stringify(data));
-      setUserData(data);
     } catch (error) {
       console.error("Error fetching user details:", error);
     }
   };
-
-
-
 
   const handleBuyPlan = async () => {
     postingData()
@@ -436,7 +408,8 @@ console.log(tierState)
 
 
 const rate = "100";
-  const buyToken = async (handleBuyPlan) => {
+
+  const buyToken = async (handleBuyPlan, getDetails, getMainUserId) => {
     setBuyTokenLoading(true);
     try {
       let ref;
@@ -466,7 +439,9 @@ const rate = "100";
 
            if (receipt.status === 1) {
             handleBuyPlan()  
+            getDetails()
             handleConfetti() 
+            getMainUserId(address);
             } 
 
             } catch (error) {
@@ -891,7 +866,7 @@ const rate = "100";
                           </div>
                           {/* <p>You must have {result2} MJC Tokens</p> */}
                           <Button
-                            onClick={()=>{buyToken(handleBuyPlan)}}
+                            onClick={()=>{buyToken(handleBuyPlan, getDetails, getMainUserId)}}
                             type="submit"
                             className="buy_button_MJC"
                           >
