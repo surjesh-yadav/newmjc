@@ -181,7 +181,7 @@ const Registration = () => {
  
   //read functions
   const { contract } = useContract(
-    "0x6563536d18b13EE77E255085695DcCa1C78b716A"
+    "0x5E19d78968baD32Fd9DA4B8ea55716068b1EC82a"
   );
   const { data: cunWalletBal, isLoading: isCunWalletBalLoading } =
     useTokenBalance(contract, address);
@@ -237,7 +237,7 @@ console.log(tierState)
   // const approveTokens = async () => {
   //   setApproveTokensLoading(true);
   //   try {
-  //     let spender = "0x6563536d18b13EE77E255085695DcCa1C78b716A"; //contract address
+  //     let spender = "0x5E19d78968baD32Fd9DA4B8ea55716068b1EC82a"; //contract address
   //     let approveAmount = ethers.utils.parseEther(spending);
   //     const data = await approve({ args: [spender, approveAmount] });
   //     console.info("contract call successs", data);
@@ -259,7 +259,7 @@ console.log(tierState)
   const approveTokens = async () => {
     setBuyTokenLoading(true);
   try {
-    let spender = "0x6563536d18b13EE77E255085695DcCa1C78b716A"; //contract address
+    let spender = "0x5E19d78968baD32Fd9DA4B8ea55716068b1EC82a"; //contract address
     let approveAmount = ethers.utils.parseEther(spending);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
